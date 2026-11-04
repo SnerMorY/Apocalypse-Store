@@ -31,8 +31,8 @@ git switch -c fix/zombie-stuck
 
 **Работа в Construct 3:**
 Открывайте проект строго через локальную папку проекта, которую подтягиваете с репозитория. Также и для отправки изменений - сохраняйте результат "папка проекта".
-![[docs/how_to_open.png]]
-![[docs/how_to_save.png]]
+![How to open](https://github.com/SnerMorY/Apocalypse-Store/raw/main/docs/how_to_open.png)
+![How to save](https://github.com/SnerMorY/Apocalypse-Store/raw/main/docs/how_to_save.png)
 
 **Коммит и отправка изменений:**
 Делайте коммиты с понятным описанием на русском или английском
