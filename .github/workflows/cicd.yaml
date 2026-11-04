@@ -1,0 +1,11 @@
+name: Deploy
+on: [push]
+
+jobs:
+    echo-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: List runner's directory
+              run: |
+                pwd
+                ls -a
