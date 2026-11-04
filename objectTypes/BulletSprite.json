@@ -1,0 +1,59 @@
+{
+	"name": "BulletSprite",
+	"plugin-id": "Sprite",
+	"sid": 906694871546306,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "isColliding",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 450545056945053
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Bullet",
+			"name": "Пуля",
+			"sid": 484451394192883
+		},
+		{
+			"behaviorId": "destroy",
+			"name": "DestroyOutside",
+			"sid": 724734911171095
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 10,
+						"height": 3,
+						"originX": -0.12757201646090535,
+						"originY": -0.06584362139917696,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5318175,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 575861958442560,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
