@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "can_shoot",
+			"name": "CanShoot",
 			"type": "boolean",
 			"initialValue": "true",
 			"comment": "",
@@ -195,7 +195,7 @@
 					"objectClass": "System",
 					"sid": 845470045883461,
 					"parameters": {
-						"variable": "can_shoot"
+						"variable": "CanShoot"
 					}
 				}
 			],
@@ -238,7 +238,7 @@
 					"objectClass": "System",
 					"sid": 835701929062276,
 					"parameters": {
-						"variable": "can_shoot",
+						"variable": "CanShoot",
 						"value": "false"
 					}
 				},
@@ -256,7 +256,7 @@
 					"objectClass": "System",
 					"sid": 375546723276524,
 					"parameters": {
-						"variable": "can_shoot",
+						"variable": "CanShoot",
 						"value": "true"
 					}
 				}
