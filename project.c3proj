@@ -80,14 +80,14 @@
 	"uniqueId": "xw43m7h3com",
 	"objectTypes": {
 		"items": [
-			"Клавиатура",
+			"Keyboard",
 			"Wall",
 			"PlayerHitbox",
 			"PlayerSprite",
-			"Мышь",
-			"ТайловыйФон",
-			"ТайловыйФон2",
-			"weapon_gun",
+			"Mouse",
+			"BackgroundTile0",
+			"BackgroundTile1",
+			"WeaponGun",
 			"BulletSprite",
 			"Camera"
 		],
