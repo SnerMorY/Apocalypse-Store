@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "can_shoot",
+			"name": "CanShoot",
 			"type": "boolean",
 			"initialValue": "true",
 			"comment": "",
@@ -23,7 +23,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Клавиатура",
+							"objectClass": "Keyboard",
 							"sid": 516415531510838,
 							"parameters": {
 								"key": 87
@@ -48,7 +48,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Клавиатура",
+							"objectClass": "Keyboard",
 							"sid": 214484040002755,
 							"parameters": {
 								"key": 68
@@ -73,7 +73,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Клавиатура",
+							"objectClass": "Keyboard",
 							"sid": 555918463090676,
 							"parameters": {
 								"key": 65
@@ -98,7 +98,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Клавиатура",
+							"objectClass": "Keyboard",
 							"sid": 755663156240581,
 							"parameters": {
 								"key": 83
@@ -136,8 +136,8 @@
 					"objectClass": "Camera",
 					"sid": 736091266138748,
 					"parameters": {
-						"x": "lerp(Self.X, PlayerHitbox.X + clamp((Мышь.X - PlayerHitbox.X) * 0.2, -150, 150), dt * 5)",
-						"y": "lerp(Self.Y, PlayerHitbox.Y + clamp((Мышь.Y - PlayerHitbox.Y) * 0.2, -150, 150), dt * 5)"
+						"x": "lerp(Self.X, PlayerHitbox.X + clamp((Mouse.X - PlayerHitbox.X) * 0.2, -150, 150), dt * 5)",
+						"y": "lerp(Self.Y, PlayerHitbox.Y + clamp((Mouse.Y - PlayerHitbox.Y) * 0.2, -150, 150), dt * 5)"
 					}
 				},
 				{
@@ -154,13 +154,13 @@
 					"objectClass": "PlayerSprite",
 					"sid": 653461324544702,
 					"parameters": {
-						"x": "Мышь.X",
-						"y": "Мышь.Y"
+						"x": "Mouse.X",
+						"y": "Mouse.Y"
 					}
 				},
 				{
 					"id": "set-position-to-another-object",
-					"objectClass": "weapon_gun",
+					"objectClass": "WeaponGun",
 					"sid": 329873296233271,
 					"parameters": {
 						"object": "PlayerSprite",
@@ -169,11 +169,11 @@
 				},
 				{
 					"id": "set-angle-toward-position",
-					"objectClass": "weapon_gun",
+					"objectClass": "WeaponGun",
 					"sid": 612373940618791,
 					"parameters": {
-						"x": "Мышь.X",
-						"y": "Мышь.Y"
+						"x": "Mouse.X",
+						"y": "Mouse.Y"
 					}
 				}
 			],
@@ -184,7 +184,7 @@
 			"conditions": [
 				{
 					"id": "mouse-button-is-down",
-					"objectClass": "Мышь",
+					"objectClass": "Mouse",
 					"sid": 363242338079020,
 					"parameters": {
 						"mouse-button": "left"
@@ -195,7 +195,7 @@
 					"objectClass": "System",
 					"sid": 845470045883461,
 					"parameters": {
-						"variable": "can_shoot"
+						"variable": "CanShoot"
 					}
 				}
 			],
@@ -218,8 +218,8 @@
 					"parameters": {
 						"object-to-create": "BulletSprite",
 						"layer": "0",
-						"x": "weapon_gun.ImagePointX(1)",
-						"y": "weapon_gun.ImagePointY(1)",
+						"x": "WeaponGun.ImagePointX(1)",
+						"y": "WeaponGun.ImagePointY(1)",
 						"create-hierarchy": true,
 						"template-name": "\"\""
 					}
@@ -229,8 +229,8 @@
 					"objectClass": "BulletSprite",
 					"sid": 232598702587020,
 					"parameters": {
-						"x": "Мышь.X",
-						"y": "Мышь.Y"
+						"x": "Mouse.X",
+						"y": "Mouse.Y"
 					}
 				},
 				{
@@ -238,7 +238,7 @@
 					"objectClass": "System",
 					"sid": 835701929062276,
 					"parameters": {
-						"variable": "can_shoot",
+						"variable": "CanShoot",
 						"value": "false"
 					}
 				},
@@ -256,7 +256,7 @@
 					"objectClass": "System",
 					"sid": 375546723276524,
 					"parameters": {
-						"variable": "can_shoot",
+						"variable": "CanShoot",
 						"value": "true"
 					}
 				}
@@ -271,7 +271,7 @@
 					"objectClass": "BulletSprite",
 					"sid": 764094830548003,
 					"parameters": {
-						"object": "ТайловыйФон"
+						"object": "BackgroundTile0"
 					}
 				}
 			],

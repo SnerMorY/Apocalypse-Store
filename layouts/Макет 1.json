@@ -7,7 +7,7 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "ТайловыйФон",
+					"type": "BackgroundTile0",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -59,7 +59,7 @@
 					}
 				},
 				{
-					"type": "ТайловыйФон",
+					"type": "BackgroundTile0",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -111,7 +111,7 @@
 					}
 				},
 				{
-					"type": "ТайловыйФон",
+					"type": "BackgroundTile0",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -163,7 +163,7 @@
 					}
 				},
 				{
-					"type": "ТайловыйФон",
+					"type": "BackgroundTile0",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -215,7 +215,7 @@
 					}
 				},
 				{
-					"type": "ТайловыйФон2",
+					"type": "BackgroundTile1",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -259,7 +259,7 @@
 					}
 				},
 				{
-					"type": "weapon_gun",
+					"type": "WeaponGun",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Default",
