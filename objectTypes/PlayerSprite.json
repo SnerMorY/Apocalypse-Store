@@ -4,7 +4,22 @@
 	"sid": 914929051333536,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "FireRate",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 295341204344243
+		},
+		{
+			"name": "HP",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 465574001266597
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {

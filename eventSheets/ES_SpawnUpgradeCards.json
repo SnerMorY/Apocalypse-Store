@@ -1,0 +1,381 @@
+{
+	"name": "ES_SpawnUpgradeCards",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 752657015639199,
+					"parameters": {
+						"key": 80
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "createPermutationTable",
+					"objectClass": "RandomCardEffect",
+					"sid": 556464943060178,
+					"parameters": {
+						"length": "3",
+						"offset": "1"
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "EffectNames",
+					"sid": 126756677021180,
+					"parameters": {
+						"key": "\"1\"",
+						"value": "\"+1 Firerate\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "EffectNames",
+					"sid": 942040447411745,
+					"parameters": {
+						"key": "\"2\"",
+						"value": "\"+1 HP\""
+					}
+				},
+				{
+					"id": "add-key",
+					"objectClass": "EffectNames",
+					"sid": 220162947426175,
+					"parameters": {
+						"key": "\"3\"",
+						"value": "\"+50 Movespeed\""
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 972520166662211,
+					"parameters": {
+						"object-to-create": "UpgradeCard",
+						"layer": "2",
+						"x": "Camera.X - 200",
+						"y": "Camera.Y",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "UpgradeCard",
+					"sid": 515389333845264,
+					"parameters": {
+						"instance-variable": "EffectID",
+						"value": "RandomCardEffect.Permutation(0)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "CardText",
+					"sid": 331018415251271,
+					"parameters": {
+						"x": "UpgradeCard.ImagePointX(1) - len(EffectNames.Get(str(UpgradeCard.EffectID))) * 3.5",
+						"y": "UpgradeCard.ImagePointY(1)"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "CardText",
+					"sid": 429638317766474,
+					"parameters": {
+						"text": "EffectNames.Get(str(UpgradeCard.EffectID))"
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 548675797269149,
+					"parameters": {
+						"object-to-create": "UpgradeCard",
+						"layer": "2",
+						"x": "Camera.X",
+						"y": "Camera.Y",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "UpgradeCard",
+					"sid": 438341004586407,
+					"parameters": {
+						"instance-variable": "EffectID",
+						"value": "RandomCardEffect.Permutation(1)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "CardText",
+					"sid": 310476596375843,
+					"parameters": {
+						"x": "UpgradeCard.ImagePointX(1) - len(EffectNames.Get(str(UpgradeCard.EffectID))) * 3.5",
+						"y": "UpgradeCard.ImagePointY(1)"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "CardText",
+					"sid": 701196717861511,
+					"parameters": {
+						"text": "EffectNames.Get(str(UpgradeCard.EffectID))"
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 380427244245694,
+					"parameters": {
+						"object-to-create": "UpgradeCard",
+						"layer": "2",
+						"x": "Camera.X + 200",
+						"y": "Camera.Y",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "UpgradeCard",
+					"sid": 160304019531630,
+					"parameters": {
+						"instance-variable": "EffectID",
+						"value": "RandomCardEffect.Permutation(2)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "CardText",
+					"sid": 757106275322169,
+					"parameters": {
+						"x": "UpgradeCard.ImagePointX(1) - len(EffectNames.Get(str(UpgradeCard.EffectID))) * 3.5",
+						"y": "UpgradeCard.ImagePointY(1)"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "CardText",
+					"sid": 777457835981481,
+					"parameters": {
+						"text": "EffectNames.Get(str(UpgradeCard.EffectID))"
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 861943817994589,
+					"parameters": {
+						"object-to-create": "DarkenedBackground",
+						"layer": "1",
+						"x": "Camera.X",
+						"y": "Camera.Y",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "DarkenedBackground",
+					"sid": 695087566964854,
+					"parameters": {
+						"x": "PlayerSprite.X",
+						"y": "PlayerSprite.Y"
+					}
+				},
+				{
+					"id": "set-scale",
+					"objectClass": "DarkenedBackground",
+					"sid": 516010783905633,
+					"parameters": {
+						"scale": "10"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 500945993591011,
+					"parameters": {
+						"variable": "FreezeGame",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 663529244433347
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 654692023679165,
+					"parameters": {
+						"object": "UpgradeCard"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "UpgradeCard",
+					"sid": 556369963898207,
+					"parameters": {
+						"animation": "\"SizeUp\"",
+						"from": "current-frame"
+					}
+				},
+				{
+					"id": "set-font-size",
+					"objectClass": "CardText",
+					"sid": 235389294461433,
+					"parameters": {
+						"size-pt": "11"
+					}
+				}
+			],
+			"sid": 961240234873407
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 549168872329901
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "UpgradeCard",
+					"sid": 908991672103925,
+					"parameters": {
+						"animation": "\"SizeDown\"",
+						"from": "current-frame"
+					}
+				},
+				{
+					"id": "set-font-size",
+					"objectClass": "CardText",
+					"sid": 375631319435598,
+					"parameters": {
+						"size-pt": "10"
+					}
+				}
+			],
+			"sid": 933352293817602
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 159439118031960,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "UpgradeCard"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-instvar",
+					"objectClass": "PlayerSprite",
+					"sid": 928818110855959,
+					"parameters": {
+						"instance-variable": "FireRate",
+						"value": "UpgradeCard.EffectID = 1 ? 1 : 0"
+					}
+				},
+				{
+					"id": "add-to-instvar",
+					"objectClass": "PlayerSprite",
+					"sid": 829505180676838,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "UpgradeCard.EffectID = 2 ? 1 : 0"
+					}
+				},
+				{
+					"id": "set-max-speed",
+					"objectClass": "PlayerHitbox",
+					"sid": 469412108425168,
+					"behaviorType": "8Направлений",
+					"parameters": {
+						"max-speed": "PlayerHitbox.8Направлений.MaxSpeed + (UpgradeCard.EffectID = 3 ? 50 : 0)"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 651311075442200,
+					"parameters": {
+						"seconds": "0.1",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 475988449323994,
+					"parameters": {
+						"variable": "FreezeGame",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 931203377966828,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 389512915511052,
+							"parameters": {
+								"object": "UpgradeCard"
+							}
+						},
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 676187056491461,
+							"parameters": {
+								"object": "CardText"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "UpgradeCard",
+							"sid": 538672707836206
+						},
+						{
+							"id": "destroy",
+							"objectClass": "DarkenedBackground",
+							"sid": 794156265552235
+						},
+						{
+							"id": "destroy",
+							"objectClass": "CardText",
+							"sid": 507464180043441
+						}
+					],
+					"sid": 430295400159710
+				}
+			]
+		}
+	],
+	"sid": 232610648651724
+}
