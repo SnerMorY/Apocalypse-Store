@@ -1,321 +1,361 @@
 {
-	"name": "Список событий 1",
-	"events": [
-		{
-			"eventType": "variable",
-			"name": "FreezeGame",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 509135059846852
-		},
-		{
-			"eventType": "variable",
-			"name": "CanShoot",
-			"type": "boolean",
-			"initialValue": "true",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 363910060659389
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Управление",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "key-is-down",
-							"objectClass": "Keyboard",
-							"sid": 516415531510838,
-							"parameters": {
-								"key": 87
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "PlayerHitbox",
-							"sid": 277643854465237,
-							"behaviorType": "8Направлений",
-							"parameters": {
-								"control": "up"
-							}
-						}
-					],
-					"sid": 957677747059475
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "key-is-down",
-							"objectClass": "Keyboard",
-							"sid": 214484040002755,
-							"parameters": {
-								"key": 68
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "PlayerHitbox",
-							"sid": 523057720848789,
-							"behaviorType": "8Направлений",
-							"parameters": {
-								"control": "right"
-							}
-						}
-					],
-					"sid": 209460075266288
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "key-is-down",
-							"objectClass": "Keyboard",
-							"sid": 555918463090676,
-							"parameters": {
-								"key": 65
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "PlayerHitbox",
-							"sid": 797660611425414,
-							"behaviorType": "8Направлений",
-							"parameters": {
-								"control": "left"
-							}
-						}
-					],
-					"sid": 526252450883347
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "key-is-down",
-							"objectClass": "Keyboard",
-							"sid": 755663156240581,
-							"parameters": {
-								"key": 83
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "PlayerHitbox",
-							"sid": 676029048216493,
-							"behaviorType": "8Направлений",
-							"parameters": {
-								"control": "down"
-							}
-						}
-					],
-					"sid": 107554276288138
-				}
-			],
-			"sid": 282667293105911
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 216025087470045
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 473827863300098,
-					"parameters": {
-						"variable": "FreezeGame"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "set-position",
-					"objectClass": "Camera",
-					"sid": 736091266138748,
-					"parameters": {
-						"x": "lerp(Self.X, PlayerHitbox.X + clamp((Mouse.X - PlayerHitbox.X) * 0.2, -150, 150), dt * 5)",
-						"y": "lerp(Self.Y, PlayerHitbox.Y + clamp((Mouse.Y - PlayerHitbox.Y) * 0.2, -150, 150), dt * 5)"
-					}
-				},
-				{
-					"id": "set-position-to-another-object",
-					"objectClass": "PlayerSprite",
-					"sid": 400676399545551,
-					"parameters": {
-						"object": "PlayerHitbox",
-						"image-point-optional": "0"
-					}
-				},
-				{
-					"id": "set-angle-toward-position",
-					"objectClass": "PlayerSprite",
-					"sid": 653461324544702,
-					"parameters": {
-						"x": "Mouse.X",
-						"y": "Mouse.Y"
-					}
-				},
-				{
-					"id": "set-position-to-another-object",
-					"objectClass": "WeaponGun",
-					"sid": 329873296233271,
-					"parameters": {
-						"object": "PlayerSprite",
-						"image-point-optional": "1"
-					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "WeaponGun",
-					"sid": 271793362350572,
-					"parameters": {
-						"angle": "PlayerSprite.Angle"
-					}
-				}
-			],
-			"sid": 637110497647302
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "Mouse",
-					"sid": 363242338079020,
-					"parameters": {
-						"mouse-button": "left"
-					}
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 845470045883461,
-					"parameters": {
-						"variable": "CanShoot"
-					}
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 373994040337898,
-					"parameters": {
-						"variable": "FreezeGame"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "shake",
-					"objectClass": "Camera",
-					"sid": 591383731913016,
-					"behaviorType": "СледитьЗа",
-					"parameters": {
-						"magnitude": "6",
-						"duration": "0.1",
-						"mode": "reducing-magnitude"
-					}
-				},
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 633952571830201,
-					"parameters": {
-						"object-to-create": "BulletSprite",
-						"layer": "0",
-						"x": "WeaponGun.ImagePointX(1)",
-						"y": "WeaponGun.ImagePointY(1)",
-						"create-hierarchy": true,
-						"template-name": "\"\""
-					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "BulletSprite",
-					"sid": 232285711510749,
-					"parameters": {
-						"angle": "WeaponGun.Angle"
-					}
-				},
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 835701929062276,
-					"parameters": {
-						"variable": "CanShoot",
-						"value": "false"
-					}
-				},
-				{
-					"id": "wait",
-					"objectClass": "System",
-					"sid": 137780257006599,
-					"parameters": {
-						"seconds": "1 / PlayerSprite.FireRate",
-						"use-timescale": true
-					}
-				},
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 375546723276524,
-					"parameters": {
-						"variable": "CanShoot",
-						"value": "true"
-					}
-				}
-			],
-			"sid": 776641847786608
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "BulletSprite",
-					"sid": 764094830548003,
-					"parameters": {
-						"object": "BackgroundTile0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "destroy",
-					"objectClass": "BulletSprite",
-					"sid": 744492923917414
-				}
-			],
-			"sid": 215356155866472
-		},
-		{
-			"eventType": "block",
-			"conditions": [],
-			"actions": [],
-			"sid": 160002306775813
-		}
-	],
-	"sid": 936407334086993
+  "name": "Список событий 1",
+  "events": [
+    {
+      "eventType": "variable",
+      "name": "FreezeGame",
+      "type": "boolean",
+      "initialValue": "false",
+      "comment": "",
+      "isStatic": false,
+      "isConstant": false,
+      "sid": 509135059846852
+    },
+    {
+      "eventType": "variable",
+      "name": "CanShoot",
+      "type": "boolean",
+      "initialValue": "true",
+      "comment": "",
+      "isStatic": false,
+      "isConstant": false,
+      "sid": 363910060659389
+    },
+    {
+      "eventType": "comment",
+      "text": "Обрабатывает нажатия клавиш WASD и управляет перемещением персонажа в соответствующих направлениях"
+    },
+    {
+      "eventType": "group",
+      "disabled": false,
+      "title": "Управление",
+      "description": "",
+      "isActiveOnStart": true,
+      "children": [
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "key-is-down",
+              "objectClass": "Keyboard",
+              "sid": 516415531510838,
+              "parameters": {
+                "key": 87
+              }
+            }
+          ],
+          "actions": [
+            {
+              "id": "simulate-control",
+              "objectClass": "PlayerHitbox",
+              "sid": 277643854465237,
+              "behaviorType": "8Направлений",
+              "parameters": {
+                "control": "up"
+              }
+            }
+          ],
+          "sid": 957677747059475
+        },
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "key-is-down",
+              "objectClass": "Keyboard",
+              "sid": 214484040002755,
+              "parameters": {
+                "key": 68
+              }
+            }
+          ],
+          "actions": [
+            {
+              "id": "simulate-control",
+              "objectClass": "PlayerHitbox",
+              "sid": 523057720848789,
+              "behaviorType": "8Направлений",
+              "parameters": {
+                "control": "right"
+              }
+            }
+          ],
+          "sid": 209460075266288
+        },
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "key-is-down",
+              "objectClass": "Keyboard",
+              "sid": 555918463090676,
+              "parameters": {
+                "key": 65
+              }
+            }
+          ],
+          "actions": [
+            {
+              "id": "simulate-control",
+              "objectClass": "PlayerHitbox",
+              "sid": 797660611425414,
+              "behaviorType": "8Направлений",
+              "parameters": {
+                "control": "left"
+              }
+            }
+          ],
+          "sid": 526252450883347
+        },
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "key-is-down",
+              "objectClass": "Keyboard",
+              "sid": 755663156240581,
+              "parameters": {
+                "key": 83
+              }
+            }
+          ],
+          "actions": [
+            {
+              "id": "simulate-control",
+              "objectClass": "PlayerHitbox",
+              "sid": 676029048216493,
+              "behaviorType": "8Направлений",
+              "parameters": {
+                "control": "down"
+              }
+            }
+          ],
+          "sid": 107554276288138
+        }
+      ],
+      "sid": 282667293105911
+    },
+    {
+      "eventType": "comment",
+      "text": "Обновляет положение камеры, хитбокса персонажа и оружия, обеспечивает наведение оружия на курсор"
+    },
+    {
+      "eventType": "group",
+      "disabled": false,
+      "title": "Обновление игровых событий",
+      "description": "",
+      "isActiveOnStart": true,
+      "children": [
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "every-tick",
+              "objectClass": "System",
+              "sid": 216025087470045
+            },
+            {
+              "id": "compare-boolean-eventvar",
+              "objectClass": "System",
+              "sid": 473827863300098,
+              "parameters": {
+                "variable": "FreezeGame"
+              },
+              "isInverted": true
+            }
+          ],
+          "actions": [
+            {
+              "id": "set-position",
+              "objectClass": "Camera",
+              "sid": 736091266138748,
+              "parameters": {
+                "x": "lerp(Self.X, PlayerHitbox.X + clamp((Mouse.X - PlayerHitbox.X) * 0.2, -150, 150), dt * 5)",
+                "y": "lerp(Self.Y, PlayerHitbox.Y + clamp((Mouse.Y - PlayerHitbox.Y) * 0.2, -150, 150), dt * 5)"
+              }
+            },
+            {
+              "id": "set-position-to-another-object",
+              "objectClass": "PlayerSprite",
+              "sid": 400676399545551,
+              "parameters": {
+                "object": "PlayerHitbox",
+                "image-point-optional": "0"
+              }
+            },
+            {
+              "id": "set-angle-toward-position",
+              "objectClass": "PlayerSprite",
+              "sid": 653461324544702,
+              "parameters": {
+                "x": "Mouse.X",
+                "y": "Mouse.Y"
+              }
+            },
+            {
+              "id": "set-position-to-another-object",
+              "objectClass": "WeaponGun",
+              "sid": 329873296233271,
+              "parameters": {
+                "object": "PlayerSprite",
+                "image-point-optional": "1"
+              }
+            },
+            {
+              "id": "set-angle",
+              "objectClass": "WeaponGun",
+              "sid": 271793362350572,
+              "parameters": {
+                "angle": "PlayerSprite.Angle"
+              }
+            }
+          ],
+          "sid": 637110497647302
+        }
+      ],
+      "sid": 273936647804573
+    },
+    {
+      "eventType": "comment",
+      "text": "Обрабатывает нажатие левой кнопки мыши, создает пули в направлении курсора, ограничивает частоту выстрелов"
+    },
+    {
+      "eventType": "group",
+      "disabled": false,
+      "title": "Стрельба",
+      "description": "",
+      "isActiveOnStart": true,
+      "children": [
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "mouse-button-is-down",
+              "objectClass": "Mouse",
+              "sid": 363242338079020,
+              "parameters": {
+                "mouse-button": "left"
+              }
+            },
+            {
+              "id": "compare-boolean-eventvar",
+              "objectClass": "System",
+              "sid": 845470045883461,
+              "parameters": {
+                "variable": "CanShoot"
+              }
+            },
+            {
+              "id": "compare-boolean-eventvar",
+              "objectClass": "System",
+              "sid": 373994040337898,
+              "parameters": {
+                "variable": "FreezeGame"
+              },
+              "isInverted": true
+            }
+          ],
+          "actions": [
+            {
+              "id": "shake",
+              "objectClass": "Camera",
+              "sid": 591383731913016,
+              "behaviorType": "СледитьЗа",
+              "parameters": {
+                "magnitude": "6",
+                "duration": "0.1",
+                "mode": "reducing-magnitude"
+              }
+            },
+            {
+              "id": "create-object",
+              "objectClass": "System",
+              "sid": 633952571830201,
+              "parameters": {
+                "object-to-create": "BulletSprite",
+                "layer": "0",
+                "x": "WeaponGun.ImagePointX(1)",
+                "y": "WeaponGun.ImagePointY(1)",
+                "create-hierarchy": true,
+                "template-name": "\"\""
+              }
+            },
+            {
+              "id": "set-angle",
+              "objectClass": "BulletSprite",
+              "sid": 232285711510749,
+              "parameters": {
+                "angle": "WeaponGun.Angle"
+              }
+            },
+            {
+              "id": "set-boolean-eventvar",
+              "objectClass": "System",
+              "sid": 835701929062276,
+              "parameters": {
+                "variable": "CanShoot",
+                "value": "false"
+              }
+            },
+            {
+              "id": "wait",
+              "objectClass": "System",
+              "sid": 137780257006599,
+              "parameters": {
+                "seconds": "1 / PlayerSprite.FireRate",
+                "use-timescale": true
+              }
+            },
+            {
+              "id": "set-boolean-eventvar",
+              "objectClass": "System",
+              "sid": 168007303439858,
+              "parameters": {
+                "variable": "CanShoot",
+                "value": "true"
+              }
+            }
+          ],
+          "sid": 474540184334324
+        }
+      ],
+      "sid": 773467828207027
+    },
+    {
+      "eventType": "comment",
+      "text": "Обрабатывает столкновение пуль с объектами окружения и уничтожает их при попадании в препятствия"
+    },
+    {
+      "eventType": "group",
+      "disabled": false,
+      "title": "Обработка столкновений",
+      "description": "",
+      "isActiveOnStart": true,
+      "children": [
+        {
+          "eventType": "block",
+          "conditions": [
+            {
+              "id": "on-collision-with-another-object",
+              "objectClass": "BulletSprite",
+              "sid": 771140718901301,
+              "parameters": {
+                "object": "BackgroundTile0"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "id": "destroy",
+              "objectClass": "BulletSprite",
+              "sid": 692777495536170
+            }
+          ],
+          "sid": 942190101987059
+        }
+      ],
+      "sid": 273936647804573
+    }
+  ],
+  "sid": 936407334086993
 }
