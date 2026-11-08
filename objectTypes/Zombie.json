@@ -1,0 +1,95 @@
+{
+	"name": "Zombie",
+	"plugin-id": "Sprite",
+	"sid": 476007335621718,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "HP",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 296450179038484
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pathfinding",
+			"name": "ПоискПути",
+			"sid": 821479042785436
+		},
+		{
+			"behaviorId": "solid",
+			"name": "Твёрдый",
+			"sid": 214892709185387
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 50,
+						"height": 50,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7055723,
+						"collisionPoly": {
+							"points": [
+								0.37,
+								0.07,
+								0.55,
+								0.07,
+								0.59,
+								0.09,
+								0.63,
+								0.13,
+								0.75,
+								0.47,
+								0.75,
+								0.5299999999999998,
+								0.63,
+								0.87,
+								0.59,
+								0.91,
+								0.55,
+								0.93,
+								0.37,
+								0.93,
+								0.33,
+								0.91,
+								0.29,
+								0.87,
+								0.21,
+								0.59,
+								0.21,
+								0.43,
+								0.27,
+								0.19,
+								0.33,
+								0.09
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 801094033785551,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

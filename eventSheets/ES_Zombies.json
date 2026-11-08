@@ -1,0 +1,215 @@
+{
+	"name": "ES_Zombies",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 505603141427694,
+					"parameters": {
+						"interval-seconds": "0.2"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 101291378385583,
+					"parameters": {
+						"variable": "FreezeGame"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "find-path",
+					"objectClass": "Zombie",
+					"sid": 721266408831033,
+					"behaviorType": "ПоискПути",
+					"parameters": {
+						"x": "PlayerHitbox.X",
+						"y": "PlayerHitbox.Y"
+					}
+				}
+			],
+			"sid": 829740366629781
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-path-found",
+					"objectClass": "Zombie",
+					"sid": 254822952041501,
+					"behaviorType": "ПоискПути"
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 492012361815172,
+					"parameters": {
+						"variable": "FreezeGame"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "move-along-path",
+					"objectClass": "Zombie",
+					"sid": 170516574462517,
+					"behaviorType": "ПоискПути"
+				}
+			],
+			"sid": 175258591957014
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 854612298976867
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-toward-position",
+					"objectClass": "Zombie",
+					"sid": 194908614423176,
+					"parameters": {
+						"x": "PlayerHitbox.X",
+						"y": "PlayerHitbox.Y"
+					}
+				}
+			],
+			"sid": 993237877178037
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 395610654128832,
+					"parameters": {
+						"interval-seconds": "2"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 415586695532482,
+					"parameters": {
+						"variable": "FreezeGame"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 649962550366555,
+					"parameters": {
+						"object-to-create": "Zombie",
+						"layer": "1",
+						"x": "ZombieSpawner.X",
+						"y": "ZombieSpawner.Y",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				}
+			],
+			"sid": 952945506698490
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Zombie",
+					"sid": 269270691964082,
+					"parameters": {
+						"object": "PlayerHitbox"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "subtract-from-instvar",
+					"objectClass": "PlayerHitbox",
+					"sid": 743320013941753,
+					"parameters": {
+						"instance-variable": "HP",
+						"value": "1"
+					}
+				},
+				{
+					"id": "shake",
+					"objectClass": "Camera",
+					"sid": 791716391026877,
+					"behaviorType": "СледитьЗа",
+					"parameters": {
+						"magnitude": "20",
+						"duration": "0.2",
+						"mode": "reducing-magnitude"
+					}
+				}
+			],
+			"sid": 608305629356656,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "PlayerHitbox",
+							"sid": 230256630150558,
+							"parameters": {
+								"instance-variable": "HP",
+								"comparison": 3,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 683829886501704
+						},
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 867342909130634,
+							"parameters": {
+								"variable": "CanShoot"
+							}
+						},
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 581151516887803,
+							"parameters": {
+								"variable": "FreezeGame"
+							}
+						},
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 411642313432038,
+							"parameters": {
+								"variable": "UpgradeTime"
+							}
+						}
+					],
+					"sid": 758071527695708
+				}
+			]
+		}
+	],
+	"sid": 581043985472741
+}

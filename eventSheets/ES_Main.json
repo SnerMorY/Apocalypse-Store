@@ -1,0 +1,405 @@
+{
+	"name": "ES_Main",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "ES_SpawnUpgradeCards"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "ES_Zombies"
+		},
+		{
+			"eventType": "variable",
+			"name": "FreezeGame",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 509135059846852
+		},
+		{
+			"eventType": "variable",
+			"name": "CanShoot",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 363910060659389
+		},
+		{
+			"eventType": "variable",
+			"name": "UpgradeTime",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 855309266763613
+		},
+		{
+			"eventType": "comment",
+			"text": "Обрабатывает нажатия клавиш WASD и управляет перемещением персонажа в соответствующих направлениях"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Управление",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [],
+			"sid": 282667293105911
+		},
+		{
+			"eventType": "comment",
+			"text": "Обновляет положение камеры, хитбокса персонажа и оружия, обеспечивает наведение оружия на курсор"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Обновление игровых событий",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 216025087470045
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 473827863300098,
+							"parameters": {
+								"variable": "FreezeGame"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-ignoring-input",
+							"objectClass": "PlayerHitbox",
+							"sid": 574514023923835,
+							"behaviorType": "8Направлений",
+							"parameters": {
+								"input": "stop-ignoring"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "Camera",
+							"sid": 736091266138748,
+							"parameters": {
+								"x": "lerp(Self.X, PlayerHitbox.X + clamp((Mouse.X - PlayerHitbox.X) * 0.2, -150, 150), dt * 5)",
+								"y": "lerp(Self.Y, PlayerHitbox.Y + clamp((Mouse.Y - PlayerHitbox.Y) * 0.2, -150, 150), dt * 5)"
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "PlayerSprite",
+							"sid": 400676399545551,
+							"parameters": {
+								"object": "PlayerHitbox",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-angle-toward-position",
+							"objectClass": "PlayerSprite",
+							"sid": 653461324544702,
+							"parameters": {
+								"x": "Mouse.X",
+								"y": "Mouse.Y"
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "WeaponGun",
+							"sid": 329873296233271,
+							"parameters": {
+								"object": "PlayerSprite",
+								"image-point-optional": "1"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "WeaponGun",
+							"sid": 271793362350572,
+							"parameters": {
+								"angle": "PlayerSprite.Angle"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 150828799642427,
+							"parameters": {
+								"variable": "UpgradeTime",
+								"value": "dt"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "Zombie",
+							"sid": 680871328429452,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"set": "enabled"
+							}
+						}
+					],
+					"sid": 637110497647302
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 151035566374808,
+							"parameters": {
+								"variable": "FreezeGame"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-ignoring-input",
+							"objectClass": "PlayerHitbox",
+							"sid": 895552580945838,
+							"behaviorType": "8Направлений",
+							"parameters": {
+								"input": "start-ignoring"
+							}
+						},
+						{
+							"id": "set-enabled",
+							"objectClass": "Zombie",
+							"sid": 363026038794777,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"set": "disabled"
+							}
+						}
+					],
+					"sid": 780138341151844
+				}
+			],
+			"sid": 273936647804573
+		},
+		{
+			"eventType": "comment",
+			"text": "Обрабатывает нажатие левой кнопки мыши, создает пули в направлении курсора, ограничивает частоту выстрелов"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Стрельба",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 363242338079020,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 845470045883461,
+							"parameters": {
+								"variable": "CanShoot"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 373994040337898,
+							"parameters": {
+								"variable": "FreezeGame"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "shake",
+							"objectClass": "Camera",
+							"sid": 591383731913016,
+							"behaviorType": "СледитьЗа",
+							"parameters": {
+								"magnitude": "6",
+								"duration": "0.1",
+								"mode": "reducing-magnitude"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 633952571830201,
+							"parameters": {
+								"object-to-create": "BulletSprite",
+								"layer": "0",
+								"x": "WeaponGun.ImagePointX(1)",
+								"y": "WeaponGun.ImagePointY(1)",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "BulletSprite",
+							"sid": 232285711510749,
+							"parameters": {
+								"angle": "WeaponGun.Angle"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 835701929062276,
+							"parameters": {
+								"variable": "CanShoot",
+								"value": "false"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 137780257006599,
+							"parameters": {
+								"seconds": "1 / PlayerSprite.FireRate",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 168007303439858,
+							"parameters": {
+								"variable": "CanShoot",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 474540184334324
+				}
+			],
+			"sid": 773467828207027
+		},
+		{
+			"eventType": "comment",
+			"text": "Обрабатывает столкновение пуль с объектами окружения и уничтожает их при попадании в препятствия"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Обработка столкновений",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "BulletSprite",
+							"sid": 771140718901301,
+							"parameters": {
+								"object": "BackgroundTile0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "BulletSprite",
+							"sid": 692777495536170
+						}
+					],
+					"sid": 942190101987059
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "BulletSprite",
+							"sid": 724447666926379,
+							"parameters": {
+								"object": "Zombie"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "BulletSprite",
+							"sid": 128423462918941
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Zombie",
+							"sid": 345549372496949,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "1"
+							}
+						},
+						{
+							"id": "shake",
+							"objectClass": "Camera",
+							"sid": 719490141388468,
+							"behaviorType": "СледитьЗа",
+							"parameters": {
+								"magnitude": "5",
+								"duration": "0.1",
+								"mode": "reducing-magnitude"
+							}
+						}
+					],
+					"sid": 143914417556552,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Zombie",
+									"sid": 779240637372884,
+									"parameters": {
+										"instance-variable": "HP",
+										"comparison": 3,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Zombie",
+									"sid": 162755220225298
+								}
+							],
+							"sid": 236316978490964
+						}
+					]
+				}
+			],
+			"sid": 273936647804573
+		}
+	],
+	"sid": 936407334086993
+}
