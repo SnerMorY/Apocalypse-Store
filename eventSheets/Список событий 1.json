@@ -2,6 +2,10 @@
 	"name": "Список событий 1",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "ES_Zombies"
+		},
+		{
 			"eventType": "variable",
 			"name": "CanShoot",
 			"type": "boolean",
@@ -326,6 +330,72 @@
 						}
 					],
 					"sid": 942190101987059
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "BulletSprite",
+							"sid": 949879300617201,
+							"parameters": {
+								"object": "Zombie"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "BulletSprite",
+							"sid": 370554188489493
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Zombie",
+							"sid": 343918810691635,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "1"
+							}
+						},
+						{
+							"id": "shake",
+							"objectClass": "Camera",
+							"sid": 902053551649145,
+							"behaviorType": "СледитьЗа",
+							"parameters": {
+								"magnitude": "5",
+								"duration": "0.1",
+								"mode": "reducing-magnitude"
+							}
+						}
+					],
+					"sid": 297576264271677,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Zombie",
+									"sid": 752540088380838,
+									"parameters": {
+										"instance-variable": "HP",
+										"comparison": 3,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "Zombie",
+									"sid": 127271492133407
+								}
+							],
+							"sid": 654631042084873
+						}
+					]
 				}
 			],
 			"sid": 265638851832836

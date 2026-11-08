@@ -8,6 +8,20 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "AdvancedRandom",
+			"name": "Расширенная случайность",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Dictionary",
+			"name": "Словарь",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Keyboard",
 			"name": "Клавиатура",
 			"author": "Scirra",
@@ -29,6 +43,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Text",
+			"name": "Текст",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "TiledBg",
 			"name": "Тайловый фон",
 			"author": "Scirra",
@@ -45,6 +66,13 @@
 			"type": "behavior",
 			"id": "EightDir",
 			"name": "8 Направлений",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Pathfinding",
+			"name": "Поиск пути",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -89,13 +117,27 @@
 			"BackgroundTile1",
 			"WeaponGun",
 			"BulletSprite",
-			"Camera"
+			"Camera",
+			"UpgradeCard",
+			"DarkenedBackground",
+			"RandomCardEffect",
+			"EffectNames",
+			"CardText",
+			"ZombieSpawner",
+			"Zombie"
 		],
 		"subfolders": []
 	},
 	"functionsName": "Функции",
 	"autosaveData": null,
-	"containers": [],
+	"containers": [
+		{
+			"members": [
+				"CardText",
+				"UpgradeCard"
+			]
+		}
+	],
 	"families": {
 		"items": [],
 		"subfolders": []
@@ -108,7 +150,9 @@
 	},
 	"eventSheets": {
 		"items": [
-			"Список событий 1"
+			"ES_Main",
+			"ES_SpawnUpgradeCards",
+			"ES_Zombies"
 		],
 		"subfolders": []
 	},
