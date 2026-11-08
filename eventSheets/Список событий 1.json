@@ -3,6 +3,16 @@
 	"events": [
 		{
 			"eventType": "variable",
+			"name": "FreezeGame",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 509135059846852
+		},
+		{
+			"eventType": "variable",
 			"name": "CanShoot",
 			"type": "boolean",
 			"initialValue": "true",
@@ -128,6 +138,15 @@
 					"id": "every-tick",
 					"objectClass": "System",
 					"sid": 216025087470045
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 473827863300098,
+					"parameters": {
+						"variable": "FreezeGame"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
@@ -168,12 +187,11 @@
 					}
 				},
 				{
-					"id": "set-angle-toward-position",
+					"id": "set-angle",
 					"objectClass": "WeaponGun",
-					"sid": 612373940618791,
+					"sid": 271793362350572,
 					"parameters": {
-						"x": "Mouse.X",
-						"y": "Mouse.Y"
+						"angle": "PlayerSprite.Angle"
 					}
 				}
 			],
@@ -197,6 +215,15 @@
 					"parameters": {
 						"variable": "CanShoot"
 					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 373994040337898,
+					"parameters": {
+						"variable": "FreezeGame"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
@@ -225,12 +252,11 @@
 					}
 				},
 				{
-					"id": "set-angle-toward-position",
+					"id": "set-angle",
 					"objectClass": "BulletSprite",
-					"sid": 232598702587020,
+					"sid": 232285711510749,
 					"parameters": {
-						"x": "Mouse.X",
-						"y": "Mouse.Y"
+						"angle": "WeaponGun.Angle"
 					}
 				},
 				{
@@ -245,9 +271,9 @@
 				{
 					"id": "wait",
 					"objectClass": "System",
-					"sid": 900666113385383,
+					"sid": 137780257006599,
 					"parameters": {
-						"seconds": "0.2",
+						"seconds": "1 / PlayerSprite.FireRate",
 						"use-timescale": true
 					}
 				},
@@ -283,6 +309,12 @@
 				}
 			],
 			"sid": 215356155866472
+		},
+		{
+			"eventType": "block",
+			"conditions": [],
+			"actions": [],
+			"sid": 160002306775813
 		}
 	],
 	"sid": 936407334086993

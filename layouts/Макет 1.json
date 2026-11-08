@@ -329,8 +329,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 780.2249755859375,
-						"y": 233.97071838378906,
+						"x": 983,
+						"y": 26,
 						"width": 15.32817757704538,
 						"height": 3.535623686444552,
 						"originX": -0.12757201646090535,
@@ -493,7 +493,10 @@
 					"uid": 3,
 					"sid": 279986390055493,
 					"tags": "",
-					"instanceVariables": {},
+					"instanceVariables": {
+						"FireRate": 3,
+						"HP": 5
+					},
 					"behaviors": {},
 					"materialSurfaceType": "smooth",
 					"showing": true,
@@ -505,6 +508,126 @@
 						"height": 43,
 						"originX": 0.5,
 						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "UpgradeCard",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Nothing",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 14,
+					"sid": 367039432986078,
+					"tags": "",
+					"instanceVariables": {
+						"EffectID": 0
+					},
+					"behaviors": {},
+					"materialSurfaceType": "smooth",
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1061,
+						"y": 76,
+						"width": 100,
+						"height": 120,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "DarkenedBackground",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 15,
+					"sid": 473782689889736,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"materialSurfaceType": "smooth",
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1181,
+						"y": 63,
+						"width": 70,
+						"height": 56.60000000000002,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "CardText",
+					"properties": {
+						"text": "Текст",
+						"enable-bbcode": true,
+						"font": "fantasy",
+						"size": 10,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 18,
+					"sid": 129386632843108,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"materialSurfaceType": "smooth",
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1260.1572265625,
+						"y": 37.182329580321664,
+						"width": 200,
+						"height": 34.96737058447326,
+						"originX": 0,
+						"originY": 0,
 						"color": [
 							1,
 							1,
@@ -548,7 +671,16 @@
 		}
 	],
 	"sid": 712237305706591,
-	"nonworld-instances": [],
+	"nonworld-instances": [
+		{
+			"type": "EffectNames",
+			"properties": {},
+			"uid": 17,
+			"sid": 888163239105415,
+			"tags": "",
+			"instanceVariables": {}
+		}
+	],
 	"effectTypes": [],
 	"width": 1708,
 	"height": 960,
