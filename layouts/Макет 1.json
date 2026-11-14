@@ -2,12 +2,12 @@
 	"name": "Макет 1",
 	"layers": [
 		{
-			"name": "Static",
+			"name": "Main",
 			"overriden": 0,
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "BackgroundTile0",
+					"type": "WallTile",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -25,8 +25,8 @@
 						"blend-margin-x": 0.1,
 						"blend-margin-y": 0.1
 					},
-					"uid": 10,
-					"sid": 666984337126601,
+					"uid": 6,
+					"sid": 673122384983866,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {
@@ -38,13 +38,12 @@
 							}
 						}
 					},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 602,
-						"y": 724,
-						"width": 512,
+						"x": 349,
+						"y": 712,
+						"width": 755,
 						"height": 32,
 						"originX": 0,
 						"originY": 0,
@@ -54,64 +53,12 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
-					"type": "BackgroundTile0",
-					"properties": {
-						"initially-visible": true,
-						"origin": "top-left",
-						"wrap-horizontal": "repeat",
-						"wrap-vertical": "repeat",
-						"image-offset-x": 0,
-						"image-offset-y": 0,
-						"image-scale-x": 1,
-						"image-scale-y": 1,
-						"image-angle": 0,
-						"enable-tile-randomization": false,
-						"x-random": 1,
-						"y-random": 1,
-						"angle-random": 1,
-						"blend-margin-x": 0.1,
-						"blend-margin-y": 0.1
-					},
-					"uid": 4,
-					"sid": 556775360993790,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {
-						"Твёрдый": {
-							"properties": {
-								"enabled": true,
-								"use-instance-tags": true,
-								"tags": ""
-							}
-						}
-					},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 602,
-						"y": 276,
-						"width": 512,
-						"height": 32,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"z": 0,
-						"angle": 0
-					}
-				},
-				{
-					"type": "BackgroundTile0",
+					"type": "WallTile",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -130,7 +77,7 @@
 						"blend-margin-y": 0.1
 					},
 					"uid": 7,
-					"sid": 246611196250951,
+					"sid": 229642766091719,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {
@@ -142,14 +89,13 @@
 							}
 						}
 					},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 572,
-						"y": 276,
-						"width": 32,
-						"height": 479.980255446464,
+						"x": 349,
+						"y": 264,
+						"width": 755,
+						"height": 32,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -158,12 +104,12 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
-					"type": "BackgroundTile0",
+					"type": "WallTile",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -182,7 +128,7 @@
 						"blend-margin-y": 0.1
 					},
 					"uid": 8,
-					"sid": 371633194807562,
+					"sid": 414463009826813,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {
@@ -194,12 +140,11 @@
 							}
 						}
 					},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1114,
-						"y": 276,
+						"x": 317,
+						"y": 264,
 						"width": 32,
 						"height": 479.980255446464,
 						"originX": 0,
@@ -210,12 +155,12 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
-					"type": "BackgroundTile1",
+					"type": "WallTile",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -234,17 +179,67 @@
 						"blend-margin-y": 0.1
 					},
 					"uid": 9,
-					"sid": 978151363258783,
+					"sid": 770473332988396,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
-					"materialSurfaceType": "smooth",
+					"behaviors": {
+						"Твёрдый": {
+							"properties": {
+								"enabled": true,
+								"use-instance-tags": true,
+								"tags": ""
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 603,
-						"y": 306,
-						"width": 511.676182404764,
+						"x": 1104,
+						"y": 264,
+						"width": 32,
+						"height": 479.980255446464,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "FloorTile",
+					"properties": {
+						"initially-visible": true,
+						"origin": "top-left",
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0,
+						"enable-tile-randomization": false,
+						"x-random": 1,
+						"y-random": 1,
+						"angle-random": 1,
+						"blend-margin-x": 0.1,
+						"blend-margin-y": 0.1
+					},
+					"uid": 10,
+					"sid": 938684412990331,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 350,
+						"y": 294,
+						"width": 754.676182404764,
 						"height": 418.31654908464805,
 						"originX": 0,
 						"originY": 0,
@@ -254,58 +249,12 @@
 							0.8,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
-					"type": "Camera",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 13,
-					"sid": 466520077164923,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {
-						"СледитьЗа": {
-							"properties": {
-								"enabled": true
-							}
-						},
-						"BoundTo": {
-							"properties": {
-								"bound-by": "edge",
-								"region": "layout"
-							}
-						}
-					},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 525.1764831542969,
-						"y": 516.1163673400879,
-						"width": 50,
-						"height": 50,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							0
-						],
-						"z": 0,
-						"angle": 0
-					}
-				},
-				{
-					"type": "BackgroundTile0",
+					"type": "WallTile",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -322,160 +271,88 @@
 						"angle-random": 1,
 						"blend-margin-x": 0.1,
 						"blend-margin-y": 0.1
-					},
-					"uid": 21,
-					"sid": 141909954542190,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {
-						"Твёрдый": {
-							"properties": {
-								"enabled": true,
-								"use-instance-tags": true,
-								"tags": ""
-							}
-						}
-					},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 909.9266357421875,
-						"y": 491.348876953125,
-						"width": 96,
-						"height": 96,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"z": 0,
-						"angle": 0
-					}
-				},
-				{
-					"type": "BackgroundTile0",
-					"properties": {
-						"initially-visible": true,
-						"origin": "top-left",
-						"wrap-horizontal": "repeat",
-						"wrap-vertical": "repeat",
-						"image-offset-x": 0,
-						"image-offset-y": 0,
-						"image-scale-x": 1,
-						"image-scale-y": 1,
-						"image-angle": 0,
-						"enable-tile-randomization": false,
-						"x-random": 1,
-						"y-random": 1,
-						"angle-random": 1,
-						"blend-margin-x": 0.1,
-						"blend-margin-y": 0.1
-					},
-					"uid": 22,
-					"sid": 465802053439918,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {
-						"Твёрдый": {
-							"properties": {
-								"enabled": true,
-								"use-instance-tags": true,
-								"tags": ""
-							}
-						}
-					},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 716.7639770507812,
-						"y": 411.0123291015625,
-						"width": 96,
-						"height": 96,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"z": 0,
-						"angle": 0
-					}
-				}
-			],
-			"sid": 798828820203391,
-			"effectTypes": [],
-			"isInitiallyVisible": true,
-			"isInitiallyInteractive": true,
-			"isHTMLElementsLayer": false,
-			"color": [
-				1,
-				1,
-				1,
-				1
-			],
-			"backgroundColor": [
-				0.3686274509803922,
-				0.3686274509803922,
-				0.3686274509803922,
-				1
-			],
-			"isTransparent": false,
-			"sampling": "auto",
-			"parallaxX": 1,
-			"parallaxY": 1,
-			"scaleRate": 1,
-			"forceOwnTexture": false,
-			"renderingMode": "3d",
-			"drawOrder": "z-order",
-			"useRenderCells": false,
-			"blendMode": "normal",
-			"zElevation": 0,
-			"global": false
-		},
-		{
-			"name": "Dynamic",
-			"overriden": 0,
-			"subLayers": [],
-			"instances": [
-				{
-					"type": "WeaponGun",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Default",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
 					},
 					"uid": 11,
-					"sid": 594261166143820,
+					"sid": 286935599527207,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
-					"materialSurfaceType": "smooth",
+					"behaviors": {
+						"Твёрдый": {
+							"properties": {
+								"enabled": true,
+								"use-instance-tags": true,
+								"tags": ""
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 580,
-						"y": -63.3477783203125,
-						"width": 19,
-						"height": 10,
-						"originX": 0.5,
-						"originY": 0.5,
+						"x": 900,
+						"y": 479,
+						"width": 96,
+						"height": 96,
+						"originX": 0,
+						"originY": 0,
 						"color": [
 							1,
 							1,
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "WallTile",
+					"properties": {
+						"initially-visible": true,
+						"origin": "top-left",
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0,
+						"enable-tile-randomization": false,
+						"x-random": 1,
+						"y-random": 1,
+						"angle-random": 1,
+						"blend-margin-x": 0.1,
+						"blend-margin-y": 0.1
+					},
+					"uid": 12,
+					"sid": 629496583598348,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {
+						"Твёрдый": {
+							"properties": {
+								"enabled": true,
+								"use-instance-tags": true,
+								"tags": ""
+							}
+						}
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 672,
+						"y": 354,
+						"width": 96,
+						"height": 96,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
@@ -487,8 +364,8 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 5,
-					"sid": 572596056225736,
+					"uid": 13,
+					"sid": 591750113074594,
 					"tags": "",
 					"instanceVariables": {
 						"HP": 5
@@ -514,12 +391,11 @@
 							}
 						}
 					},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 661.7647705078125,
-						"y": 513.1764526367188,
+						"x": 734,
+						"y": 562,
 						"width": 50,
 						"height": 50,
 						"originX": 0.5,
@@ -530,8 +406,126 @@
 							1,
 							0.1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ZombieSpawner",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 14,
+					"sid": 531238810753742,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 531238810753742,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1022,
+						"y": 361,
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0.2
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Camera",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 15,
+					"sid": 232125815023549,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {
+						"СледитьЗа": {
+							"properties": {
+								"enabled": true
+							}
+						},
+						"BoundTo": {
+							"properties": {
+								"bound-by": "edge"
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 232125815023549,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 498.99452921842123,
+						"y": 495.4355498425527,
+						"width": 59.75433820660868,
+						"height": 63.70127970252537,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "WeaponGun",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Default",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 16,
+					"sid": 512993720031677,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 426.75240071614587,
+						"y": -88.56555938720703,
+						"width": 19,
+						"height": 10,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
@@ -543,20 +537,19 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 3,
-					"sid": 279986390055493,
+					"uid": 17,
+					"sid": 386900451224063,
 					"tags": "",
 					"instanceVariables": {
 						"FireRate": 3,
 						"HP": 5
 					},
 					"behaviors": {},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 560.1609497070312,
-						"y": -65.8026351928711,
+						"x": 406.9133504231771,
+						"y": -91.02041625976562,
 						"width": 35,
 						"height": 43,
 						"originX": 0.5,
@@ -567,8 +560,8 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
@@ -580,19 +573,18 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 14,
-					"sid": 367039432986078,
+					"uid": 18,
+					"sid": 111661390959732,
 					"tags": "",
 					"instanceVariables": {
 						"EffectID": 0
 					},
 					"behaviors": {},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 822,
-						"y": -108,
+						"x": 668.7524007161459,
+						"y": -133.21778106689453,
 						"width": 100,
 						"height": 120,
 						"originX": 0.5,
@@ -603,42 +595,8 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
-					}
-				},
-				{
-					"type": "DarkenedBackground",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 15,
-					"sid": 473782689889736,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 915.515869140625,
-						"y": -78.2271499633789,
-						"width": 70,
-						"height": 56.60000000000002,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
@@ -666,17 +624,16 @@
 						"origin": "top-left",
 						"read-aloud": false
 					},
-					"uid": 18,
-					"sid": 129386632843108,
+					"uid": 20,
+					"sid": 490990740291221,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"materialSurfaceType": "smooth",
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 779.8369750976562,
-						"y": -128.45037841796875,
+						"x": 626.5893758138021,
+						"y": -153.66815948486328,
 						"width": 83.40205708846418,
 						"height": 34.96737058447326,
 						"originX": 0,
@@ -687,12 +644,12 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
-					"type": "Zombie",
+					"type": "ZombieHitbox",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Animation 1",
@@ -700,18 +657,20 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 19,
-					"sid": 741280889331643,
+					"uid": 21,
+					"sid": 634661712296047,
 					"tags": "",
 					"instanceVariables": {
-						"HP": 3
+						"HP": 3,
+						"State": "CHASE",
+						"CurrentNode": 0
 					},
 					"behaviors": {
 						"ПоискПути": {
 							"properties": {
-								"cell-size": 32,
-								"cell-border": -1,
-								"obstacles": "solids",
+								"cell-size": 24,
+								"cell-border": -4,
+								"obstacles": "custom",
 								"max-speed": 220,
 								"acceleration": 10000,
 								"deceleration": 10000,
@@ -722,20 +681,38 @@
 								"enabled": true
 							}
 						},
-						"Твёрдый": {
+						"ДвижениеК": {
 							"properties": {
-								"enabled": true,
-								"use-instance-tags": false,
-								"tags": ""
+								"max-speed": 220,
+								"acceleration": 10000,
+								"deceleration": 10000,
+								"rotate-speed": 10000,
+								"set-angle": true,
+								"stop-on-solids": false,
+								"enabled": true
 							}
+						},
+						"ПолеЗрения": {
+							"properties": {
+								"obstacles": "solids",
+								"range": 10000,
+								"cone-of-view": 360,
+								"use-collision-cells": true
+							}
+						},
+						"Таймер": {
+							"properties": {}
 						}
 					},
-					"materialSurfaceType": "smooth",
+					"instanceFolderItem": {
+						"sid": 634661712296047,
+						"expanded": true
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 562,
-						"y": -131,
+						"x": 414,
+						"y": -156,
 						"width": 50,
 						"height": 50,
 						"originX": 0.5,
@@ -744,44 +721,10 @@
 							1,
 							1,
 							1,
-							1
+							0
 						],
-						"z": 0,
-						"angle": 0
-					}
-				},
-				{
-					"type": "ZombieSpawner",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Animation 1",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 20,
-					"sid": 209086583131805,
-					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"materialSurfaceType": "smooth",
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 1071.053955078125,
-						"y": 523.198974609375,
-						"width": 32,
-						"height": 32,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							0.2
-						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
 					}
 				},
 				{
@@ -793,8 +736,8 @@
 						"enable-collisions": true,
 						"live-preview": false
 					},
-					"uid": 12,
-					"sid": 286091216126701,
+					"uid": 22,
+					"sid": 956755137252298,
 					"tags": "",
 					"instanceVariables": {
 						"isColliding": false
@@ -812,19 +755,20 @@
 							}
 						},
 						"DestroyOutside": {
-							"properties": {
-								"region": "viewport"
-							}
+							"properties": {}
 						}
 					},
-					"materialSurfaceType": "smooth",
+					"instanceFolderItem": {
+						"sid": 956755137252298,
+						"expanded": true
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 611,
-						"y": -63,
-						"width": 15.32817757704538,
-						"height": 3.535623686444552,
+						"x": 446.4986427072695,
+						"y": -90.381158718858,
+						"width": 15.778064981384805,
+						"height": 5.6287905363141455,
 						"originX": -0.12757201646090535,
 						"originY": -0.06584362139917696,
 						"color": [
@@ -833,12 +777,208 @@
 							1,
 							1
 						],
-						"z": 0,
-						"angle": 0
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ZombieSprite",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 23,
+					"sid": 818891080151249,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 818891080151249,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 414,
+						"y": -217,
+						"width": 40,
+						"height": 40,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ZombieSpawner",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 24,
+					"sid": 682306528933272,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 682306528933272,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 1027,
+						"y": 637,
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0.2
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "ZombieSpawner",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 25,
+					"sid": 406654500307717,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 406654500307717,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 422,
+						"y": 344,
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							0.2
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "WallTile",
+					"properties": {
+						"initially-visible": true,
+						"origin": "top-left",
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0,
+						"enable-tile-randomization": false,
+						"x-random": 1,
+						"y-random": 1,
+						"angle-random": 1,
+						"blend-margin-x": 0.1,
+						"blend-margin-y": 0.1
+					},
+					"uid": 26,
+					"sid": 981075359921316,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {
+						"Твёрдый": {
+							"properties": {
+								"enabled": true,
+								"use-instance-tags": true,
+								"tags": ""
+							}
+						}
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 463,
+						"y": 505,
+						"width": 96,
+						"height": 96,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
 					}
 				}
 			],
-			"sid": 764606349454525,
+			"sid": 430846347265373,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": false,
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "UI",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [],
+			"sid": 546854127667246,
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
@@ -856,7 +996,6 @@
 				1
 			],
 			"isTransparent": true,
-			"sampling": "auto",
 			"parallaxX": 1,
 			"parallaxY": 1,
 			"scaleRate": 1,
@@ -869,13 +1008,17 @@
 			"global": false
 		}
 	],
-	"sid": 712237305706591,
+	"scene-graphs-folder-root": {
+		"items": [],
+		"subfolders": []
+	},
+	"sid": 485214624355275,
 	"nonworld-instances": [
 		{
 			"type": "EffectNames",
 			"properties": {},
-			"uid": 17,
-			"sid": 888163239105415,
+			"uid": 5,
+			"sid": 501207875763407,
 			"tags": "",
 			"instanceVariables": {}
 		}
@@ -884,8 +1027,6 @@
 	"width": 1708,
 	"height": 960,
 	"unboundedScrolling": false,
-	"sampling": "auto",
-	"ambientLight": 0.03,
 	"vpX": 0.5,
 	"vpY": 0.5,
 	"projection": "perspective",

@@ -1,7 +1,7 @@
 {
 	"name": "WeaponGun",
 	"plugin-id": "Sprite",
-	"sid": 682859519509116,
+	"sid": 984788552681176,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,7 +20,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 789771,
+						"imageSpriteId": 4125018,
 						"useCollisionPoly": true,
 						"imagePoints": [
 							{
@@ -33,7 +33,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 835796103336509,
+				"sid": 312232071797802,
 				"name": "Default",
 				"isLooping": false,
 				"isPingPong": false,

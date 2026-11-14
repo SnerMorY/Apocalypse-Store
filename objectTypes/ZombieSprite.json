@@ -1,7 +1,7 @@
 {
-	"name": "weapon_gun",
+	"name": "ZombieSprite",
 	"plugin-id": "Sprite",
-	"sid": 682859519509116,
+	"sid": 271380159468251,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -12,29 +12,22 @@
 			{
 				"frames": [
 					{
-						"width": 19,
-						"height": 10,
+						"width": 250,
+						"height": 250,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 789771,
+						"imageSpriteId": 2998650,
 						"useCollisionPoly": true,
-						"imagePoints": [
-							{
-								"name": "Дуло",
-								"x": 1,
-								"y": 0.5
-							}
-						],
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 835796103336509,
-				"name": "Default",
+				"sid": 800381197209380,
+				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

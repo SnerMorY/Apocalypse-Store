@@ -1,15 +1,15 @@
 {
 	"name": "RandomCardEffect",
 	"plugin-id": "AdvancedRandom",
-	"sid": 143425205195558,
+	"sid": 689594758411465,
 	"singleglobal-inst": {
 		"type": "RandomCardEffect",
 		"properties": {
 			"seed": "",
 			"seeded-random": false
 		},
-		"uid": 16,
-		"sid": 243682070529722,
+		"uid": 2,
+		"sid": 269827495371965,
 		"tags": ""
 	}
 }
