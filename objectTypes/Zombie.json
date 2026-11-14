@@ -1,7 +1,7 @@
 {
 	"name": "Zombie",
 	"plugin-id": "Sprite",
-	"sid": 476007335621718,
+	"sid": 167795381121634,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
@@ -10,19 +10,24 @@
 			"type": "number",
 			"desc": "",
 			"show": true,
-			"sid": 296450179038484
+			"sid": 866781618997538
 		}
 	],
 	"behaviorTypes": [
 		{
 			"behaviorId": "Pathfinding",
 			"name": "ПоискПути",
-			"sid": 821479042785436
+			"sid": 752657935605924
+		},
+		{
+			"behaviorId": "MoveTo",
+			"name": "ДвижениеК",
+			"sid": 577453844716678
 		},
 		{
 			"behaviorId": "solid",
 			"name": "Твёрдый",
-			"sid": 214892709185387
+			"sid": 198555032437579
 		}
 	],
 	"effectTypes": [],
@@ -39,7 +44,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7055723,
+						"imageSpriteId": 41561,
 						"collisionPoly": {
 							"points": [
 								0.37,
@@ -81,7 +86,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 801094033785551,
+				"sid": 886978784925223,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

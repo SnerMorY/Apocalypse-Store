@@ -1,7 +1,7 @@
 {
-	"name": "ТайловыйФон2",
+	"name": "FloorTile",
 	"plugin-id": "TiledBg",
-	"sid": 805413350186095,
+	"sid": 301163152063072,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -16,7 +16,7 @@
 		"exportFormat": "lossless",
 		"exportQuality": 0.8,
 		"fileType": "image/png",
-		"imageSpriteId": 6366146,
+		"imageSpriteId": 5917992,
 		"useCollisionPoly": true,
 		"tag": ""
 	}

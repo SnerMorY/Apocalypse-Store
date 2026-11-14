@@ -1,11 +1,17 @@
 {
-	"name": "BackgroundTile1",
+	"name": "WallTile",
 	"plugin-id": "TiledBg",
-	"sid": 805413350186095,
+	"sid": 399446102184921,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "solid",
+			"name": "Твёрдый",
+			"sid": 739858482280614
+		}
+	],
 	"effectTypes": [],
 	"image": {
 		"width": 64,
@@ -16,7 +22,7 @@
 		"exportFormat": "lossless",
 		"exportQuality": 0.8,
 		"fileType": "image/png",
-		"imageSpriteId": 6366146,
+		"imageSpriteId": 1621740,
 		"useCollisionPoly": true,
 		"tag": ""
 	}

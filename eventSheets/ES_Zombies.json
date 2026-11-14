@@ -2,214 +2,621 @@
 	"name": "ES_Zombies",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 505603141427694,
-					"parameters": {
-						"interval-seconds": "0.2"
-					}
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 101291378385583,
-					"parameters": {
-						"variable": "FreezeGame"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "find-path",
-					"objectClass": "Zombie",
-					"sid": 721266408831033,
-					"behaviorType": "ПоискПути",
-					"parameters": {
-						"x": "PlayerHitbox.X",
-						"y": "PlayerHitbox.Y"
-					}
-				}
-			],
-			"sid": 829740366629781
+			"eventType": "variable",
+			"name": "UpgradeTime",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Таймер до появления карточек апгрейда",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 329443326771055
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-path-found",
-					"objectClass": "Zombie",
-					"sid": 254822952041501,
-					"behaviorType": "ПоискПути"
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 492012361815172,
-					"parameters": {
-						"variable": "FreezeGame"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "move-along-path",
-					"objectClass": "Zombie",
-					"sid": 170516574462517,
-					"behaviorType": "ПоискПути"
-				}
-			],
-			"sid": 175258591957014
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 854612298976867
-				}
-			],
-			"actions": [
-				{
-					"id": "set-angle-toward-position",
-					"objectClass": "Zombie",
-					"sid": 194908614423176,
-					"parameters": {
-						"x": "PlayerHitbox.X",
-						"y": "PlayerHitbox.Y"
-					}
-				}
-			],
-			"sid": 993237877178037
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 395610654128832,
-					"parameters": {
-						"interval-seconds": "2"
-					}
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 415586695532482,
-					"parameters": {
-						"variable": "FreezeGame"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 649962550366555,
-					"parameters": {
-						"object-to-create": "Zombie",
-						"layer": "1",
-						"x": "ZombieSpawner.X",
-						"y": "ZombieSpawner.Y",
-						"create-hierarchy": false,
-						"template-name": "\"\""
-					}
-				}
-			],
-			"sid": 952945506698490
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Zombie",
-					"sid": 269270691964082,
-					"parameters": {
-						"object": "PlayerHitbox"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "subtract-from-instvar",
-					"objectClass": "PlayerHitbox",
-					"sid": 743320013941753,
-					"parameters": {
-						"instance-variable": "HP",
-						"value": "1"
-					}
-				},
-				{
-					"id": "shake",
-					"objectClass": "Camera",
-					"sid": 791716391026877,
-					"behaviorType": "СледитьЗа",
-					"parameters": {
-						"magnitude": "20",
-						"duration": "0.2",
-						"mode": "reducing-magnitude"
-					}
-				}
-			],
-			"sid": 608305629356656,
+			"eventType": "group",
+			"disabled": false,
+			"title": "0. Инициализация карты препятствий",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-instance-variable",
-							"objectClass": "PlayerHitbox",
-							"sid": 230256630150558,
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 246099418217885
+						}
+					],
+					"actions": [
+						{
+							"id": "regenerate-obstacle-map",
+							"objectClass": "ZombieHitbox",
+							"sid": 950985572939710,
+							"behaviorType": "ПоискПути"
+						},
+						{
+							"id": "add-obstacle",
+							"objectClass": "ZombieHitbox",
+							"sid": 168608628418760,
+							"behaviorType": "ПоискПути",
 							"parameters": {
-								"instance-variable": "HP",
-								"comparison": 3,
-								"value": "0"
+								"obstacle": "WallTile"
+							}
+						}
+					],
+					"sid": 869992247781554
+				}
+			],
+			"sid": 272385232421875
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "1. Волна",
+			"description": "Считает время до карточек",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 977234821667028
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 227031654909316,
+							"parameters": {
+								"variable": "UpgradeTime",
+								"value": "dt"
+							}
+						}
+					],
+					"sid": 524327370435280
+				}
+			],
+			"sid": 112233445566700
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "2. Машина состояний Зомби",
+			"description": "Индивидуальная логика для каждого экземпляра зомби",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 223344556677881,
+							"parameters": {
+								"object": "ZombieHitbox"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "restart-layout",
-							"objectClass": "System",
-							"sid": 683829886501704
-						},
-						{
-							"id": "reset-eventvar",
-							"objectClass": "System",
-							"sid": 867342909130634,
+							"id": "set-position-to-another-object",
+							"objectClass": "ZombieSprite",
+							"sid": 223344556677882,
 							"parameters": {
-								"variable": "CanShoot"
+								"object": "ZombieHitbox",
+								"image-point-optional": "0"
 							}
 						},
 						{
-							"id": "reset-eventvar",
-							"objectClass": "System",
-							"sid": 581151516887803,
+							"id": "set-angle-toward-position",
+							"objectClass": "ZombieSprite",
+							"sid": 975709899150995,
 							"parameters": {
-								"variable": "FreezeGame"
-							}
-						},
-						{
-							"id": "reset-eventvar",
-							"objectClass": "System",
-							"sid": 411642313432038,
-							"parameters": {
-								"variable": "UpgradeTime"
+								"x": "PlayerHitbox.X",
+								"y": "PlayerHitbox.Y"
 							}
 						}
 					],
-					"sid": 758071527695708
+					"sid": 223344556677886,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 944673715917072,
+									"parameters": {
+										"first-value": "distance(ZombieHitbox.X, ZombieHitbox.Y, PlayerHitbox.X, PlayerHitbox.Y)",
+										"comparison": 4,
+										"second-value": "200"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "ZombieHitbox",
+									"sid": 558352537170957,
+									"parameters": {
+										"instance-variable": "State",
+										"value": "\"PATH\""
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "ZombieHitbox",
+									"sid": 604804785620149,
+									"behaviorType": "ПоискПути",
+									"parameters": {
+										"set": "enabled"
+									}
+								}
+							],
+							"sid": 578479973505316
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 494242488073998
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "ZombieHitbox",
+									"sid": 223344556677812,
+									"parameters": {
+										"instance-variable": "State",
+										"value": "\"CHASE\""
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "ZombieHitbox",
+									"sid": 357166151518847,
+									"behaviorType": "ПоискПути",
+									"parameters": {
+										"set": "disabled"
+									}
+								},
+								{
+									"id": "move-to-position",
+									"objectClass": "ZombieHitbox",
+									"sid": 221961836887935,
+									"behaviorType": "ДвижениеК",
+									"parameters": {
+										"x": "PlayerHitbox.X",
+										"y": "PlayerHitbox.Y",
+										"mode": "direct"
+									}
+								}
+							],
+							"sid": 223344556677885
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 867944095965202,
+							"parameters": {
+								"interval-seconds": "0.35"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "ZombieHitbox",
+							"sid": 223344556677887,
+							"parameters": {
+								"instance-variable": "State",
+								"comparison": 0,
+								"value": "\"PATH\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "find-path",
+							"objectClass": "ZombieHitbox",
+							"sid": 168989723656099,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"x": "PlayerHitbox.X",
+								"y": "PlayerHitbox.Y"
+							}
+						}
+					],
+					"sid": 145850516812242
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-path-found",
+							"objectClass": "ZombieHitbox",
+							"sid": 391882405295026,
+							"behaviorType": "ПоискПути"
+						}
+					],
+					"actions": [
+						{
+							"id": "move-along-pathfinding-path",
+							"objectClass": "ZombieHitbox",
+							"sid": 348076309483573,
+							"behaviorType": "ДвижениеК",
+							"parameters": {
+								"mode": "direct"
+							}
+						}
+					],
+					"sid": 229909446247228
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "ZombieHitbox",
+							"sid": 334455667788991,
+							"parameters": {
+								"object": "WallTile"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "ZombieHitbox",
+							"sid": 334455667788992,
+							"parameters": {
+								"angle": "angle(WallTile.X + WallTile.Width / 2, WallTile.Y + WallTile.Height / 2, Self.X, Self.Y)",
+								"distance": "CFG_ZombieSpeed * dt"
+							}
+						}
+					],
+					"sid": 334455667788993
 				}
-			]
+			],
+			"sid": 223344556677800
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "3. Создание Зомби",
+			"description": "Вызов спавна",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 168077867879187,
+							"parameters": {
+								"interval-seconds": "CFG_SpawnInterval"
+							}
+						},
+						{
+							"id": "pick-random-instance",
+							"objectClass": "System",
+							"sid": 556677889900112,
+							"parameters": {
+								"object": "ZombieSpawner"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "SpawnZombie",
+							"sid": 556677889900199,
+							"parameters": [
+								"ZombieSpawner.X",
+								"ZombieSpawner.Y"
+							]
+						}
+					],
+					"sid": 225823730005926
+				}
+			],
+			"sid": 556677889900100
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "4. Контактный урон",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "ZombieHitbox",
+							"sid": 835164911895508,
+							"parameters": {
+								"object": "PlayerHitbox"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "PlayerHitbox",
+							"sid": 727444244338692,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "1"
+							}
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "PlayerSprite",
+							"sid": 334473713613396,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "1"
+							}
+						},
+						{
+							"id": "shake",
+							"objectClass": "Camera",
+							"sid": 461545456065748,
+							"behaviorType": "СледитьЗа",
+							"parameters": {
+								"magnitude": "15",
+								"duration": "0.25",
+								"mode": "reducing-magnitude"
+							}
+						},
+						{
+							"id": "move-at-angle",
+							"objectClass": "ZombieHitbox",
+							"sid": 834179364883527,
+							"parameters": {
+								"angle": "angle(PlayerHitbox.X, PlayerHitbox.Y, Self.X, Self.Y)",
+								"distance": "45"
+							}
+						}
+					],
+					"sid": 823959125403985,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "PlayerHitbox",
+									"sid": 991530682486020,
+									"parameters": {
+										"instance-variable": "HP",
+										"comparison": 3,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "restart-layout",
+									"objectClass": "System",
+									"sid": 876599284028839
+								}
+							],
+							"sid": 246179143463600
+						}
+					]
+				}
+			],
+			"sid": 797614562374187
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "5. Методы Зомби (Functions)",
+			"description": "Модульные функции для Зомби",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "SpawnZombie",
+					"functionDescription": "Создает хитбокс зомби и задает статы из ES_Config",
+					"functionCategory": "Zombies",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "spawnX",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 778899001122301
+						},
+						{
+							"name": "spawnY",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 778899001122302
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 581782231637000,
+							"parameters": {
+								"object-to-create": "ZombieHitbox",
+								"layer": "0",
+								"x": "spawnX",
+								"y": "spawnY",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ZombieHitbox",
+							"sid": 698531948996617,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "CFG_ZombieMaxHP"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ZombieHitbox",
+							"sid": 698531948996618,
+							"parameters": {
+								"instance-variable": "State",
+								"value": "\"PATH\""
+							}
+						},
+						{
+							"id": "set-max-speed",
+							"objectClass": "ZombieHitbox",
+							"sid": 775153144050001,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"speed": "CFG_ZombieSpeed"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 698531948996621,
+							"parameters": {
+								"seconds": "0.05",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "find-path",
+							"objectClass": "ZombieHitbox",
+							"sid": 698531948996620,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"x": "PlayerHitbox.X",
+								"y": "PlayerHitbox.Y"
+							}
+						}
+					],
+					"sid": 778899001122305
+				},
+				{
+					"functionName": "DamageZombie",
+					"functionDescription": "Наносит урон зомби, применяет Knockback из конфига и проверяет смерть",
+					"functionCategory": "Zombies",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "zombieUID",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 778899001122331
+						},
+						{
+							"name": "damage",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 778899001122332
+						},
+						{
+							"name": "knockAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 778899001122333
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "ZombieHitbox",
+							"sid": 778899001122334,
+							"parameters": {
+								"unique-id": "zombieUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "ZombieHitbox",
+							"sid": 778899001122335,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "damage"
+							}
+						},
+						{
+							"id": "move-at-angle",
+							"objectClass": "ZombieHitbox",
+							"sid": 778899001122337,
+							"parameters": {
+								"angle": "knockAngle",
+								"distance": "CFG_ZombieKnockback"
+							}
+						},
+						{
+							"id": "shake",
+							"objectClass": "Camera",
+							"sid": 778899001122338,
+							"behaviorType": "СледитьЗа",
+							"parameters": {
+								"magnitude": "5",
+								"duration": "0.1",
+								"mode": "reducing-magnitude"
+							}
+						}
+					],
+					"sid": 778899001122339,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "ZombieHitbox",
+									"sid": 778899001122340,
+									"parameters": {
+										"instance-variable": "HP",
+										"comparison": 3,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "ZombieHitbox",
+									"sid": 778899001122341
+								}
+							],
+							"sid": 778899001122342
+						}
+					]
+				}
+			],
+			"sid": 778899001122300
 		}
 	],
-	"sid": 581043985472741
+	"sid": 728949940240008
 }

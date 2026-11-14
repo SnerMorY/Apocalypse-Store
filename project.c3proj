@@ -1,7 +1,7 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 50603,
-	"name": "Apocalypse Store",
+	"savedWithRelease": 46602,
+	"name": "Apocalypse Store - Refactored",
 	"runtime": "c3",
 	"useWorker": "auto",
 	"bundleAddons": false,
@@ -71,6 +71,20 @@
 		},
 		{
 			"type": "behavior",
+			"id": "LOS",
+			"name": "Поле зрения",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "MoveTo",
+			"name": "Движение К",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Pathfinding",
 			"name": "Поиск пути",
 			"author": "Scirra",
@@ -78,15 +92,22 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Timer",
+			"name": "Таймер",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "bound",
-			"name": "[Bound to]",
+			"name": "Ограничить сценой",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "destroy",
-			"name": "[Destroy outside]",
+			"name": "Уничтожение вне макета",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -105,26 +126,25 @@
 			"bundled": false
 		}
 	],
-	"uniqueId": "xw43m7h3com",
+	"uniqueId": "b2r0k5943tj",
 	"objectTypes": {
 		"items": [
-			"Keyboard",
-			"Wall",
-			"PlayerHitbox",
-			"PlayerSprite",
-			"Mouse",
-			"BackgroundTile0",
-			"BackgroundTile1",
+			"ZombieSpawner",
+			"ZombieHitbox",
 			"WeaponGun",
-			"BulletSprite",
-			"Camera",
 			"UpgradeCard",
-			"DarkenedBackground",
 			"RandomCardEffect",
+			"PlayerSprite",
+			"PlayerHitbox",
+			"Mouse",
+			"Keyboard",
 			"EffectNames",
 			"CardText",
-			"ZombieSpawner",
-			"Zombie"
+			"Camera",
+			"BulletSprite",
+			"FloorTile",
+			"WallTile",
+			"ZombieSprite"
 		],
 		"subfolders": []
 	},
@@ -133,8 +153,8 @@
 	"containers": [
 		{
 			"members": [
-				"CardText",
-				"UpgradeCard"
+				"ZombieHitbox",
+				"ZombieSprite"
 			]
 		}
 	],
@@ -150,9 +170,10 @@
 	},
 	"eventSheets": {
 		"items": [
-			"ES_Main",
 			"ES_SpawnUpgradeCards",
-			"ES_Zombies"
+			"ES_Zombies",
+			"ES_Main",
+			"ES_Config"
 		],
 		"subfolders": []
 	},
@@ -182,15 +203,15 @@
 				{
 					"name": "Иконка-64.png",
 					"type": "image/png",
-					"sid": 847927610146220,
+					"sid": 805383315834743,
 					"icon-info": {
 						"purpose": "app-icon"
 					}
 				},
 				{
-					"name": "Иконка-16.png",
+					"name": "Иконка-256.png",
 					"type": "image/png",
-					"sid": 566813798556117,
+					"sid": 519142671294351,
 					"icon-info": {
 						"purpose": "app-icon"
 					}
@@ -198,23 +219,15 @@
 				{
 					"name": "Иконка-512.png",
 					"type": "image/png",
-					"sid": 603427381253744,
+					"sid": 118276094038574,
 					"icon-info": {
 						"purpose": "app-icon"
 					}
 				},
 				{
-					"name": "Иконка-128.png",
+					"name": "Иконка-16.png",
 					"type": "image/png",
-					"sid": 694183328690986,
-					"icon-info": {
-						"purpose": "app-icon"
-					}
-				},
-				{
-					"name": "Иконка-32.png",
-					"type": "image/png",
-					"sid": 258000098138914,
+					"sid": 745081487526363,
 					"icon-info": {
 						"purpose": "app-icon"
 					}
@@ -222,15 +235,23 @@
 				{
 					"name": "Иконка-загрузки.png",
 					"type": "image/png",
-					"sid": 952976728019856,
+					"sid": 762182236539892,
 					"icon-info": {
 						"purpose": "loading-logo"
 					}
 				},
 				{
-					"name": "Иконка-256.png",
+					"name": "Иконка-32.png",
 					"type": "image/png",
-					"sid": 679736158385756,
+					"sid": 629953338439300,
+					"icon-info": {
+						"purpose": "app-icon"
+					}
+				},
+				{
+					"name": "Иконка-128.png",
+					"type": "image/png",
+					"sid": 317673607548108,
 					"icon-info": {
 						"purpose": "app-icon"
 					}
@@ -260,10 +281,6 @@
 		],
 		"subfolders": []
 	},
-	"models3d": {
-		"items": [],
-		"subfolders": []
-	},
 	"properties": {
 		"description": "",
 		"version": "1.0.0.0",
@@ -272,8 +289,8 @@
 		"authorEmail": "",
 		"authorWebsite": "",
 		"appId": "",
-		"saveLLMContextFile": true,
 		"pixelRounding": false,
+		"zAxisScale": "regular",
 		"fov": 0.7853981633974483,
 		"useLoaderLayout": false,
 		"fullscreenMode": "letterbox-scale",
@@ -303,18 +320,16 @@
 		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
 		"framerateMode": "vsync",
-		"fixedFramerate": 30,
-		"sampling": "trilinear",
+		"sampling": "nearest",
 		"downscaling": "medium",
 		"renderingMode": "auto",
 		"anisotropicFiltering": "auto",
-		"zNear": 10,
-		"zFar": 100000,
+		"zNear": 1,
+		"zFar": 10000,
 		"maxSpriteSheetSize": 2048,
 		"loaderStyle": "splash",
 		"preloadSounds": true,
 		"uidAllocationMode": "increment",
-		"zAxisScale": "regular",
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",
 		"exportFileStructure": "folders",
@@ -322,5 +337,5 @@
 	},
 	"viewportWidth": 854,
 	"viewportHeight": 480,
-	"firstLayout": "Макет 1"
+	"firstLayout": null
 }

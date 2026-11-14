@@ -1,7 +1,7 @@
 {
 	"name": "DarkenedBackground",
 	"plugin-id": "Sprite",
-	"sid": 651999233038910,
+	"sid": 114799481041297,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,13 +20,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5002904,
+						"imageSpriteId": 953494,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 754980493551704,
+				"sid": 635985556184527,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

@@ -1,7 +1,7 @@
 {
 	"name": "UpgradeCard",
 	"plugin-id": "Sprite",
-	"sid": 192022742924839,
+	"sid": 199015200006765,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
@@ -10,7 +10,7 @@
 			"type": "number",
 			"desc": "",
 			"show": true,
-			"sid": 648816683845535
+			"sid": 307527881682624
 		}
 	],
 	"behaviorTypes": [],
@@ -28,7 +28,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3175292,
+						"imageSpriteId": 4749353,
 						"useCollisionPoly": true,
 						"imagePoints": [
 							{
@@ -41,7 +41,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 139580494592790,
+				"sid": 159488339318899,
 				"name": "Nothing",
 				"isLooping": false,
 				"isPingPong": false,
@@ -60,7 +60,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 4677594,
+						"imageSpriteId": 2920990,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
@@ -74,13 +74,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5713533,
+						"imageSpriteId": 6182636,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 430976333978455,
+				"sid": 774448191920414,
 				"name": "SizeUp",
 				"isLooping": false,
 				"isPingPong": false,
@@ -99,7 +99,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6658301,
+						"imageSpriteId": 959732,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
@@ -113,13 +113,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 2779493,
+						"imageSpriteId": 709699,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 902391302714070,
+				"sid": 263701388488783,
 				"name": "SizeDown",
 				"isLooping": false,
 				"isPingPong": false,

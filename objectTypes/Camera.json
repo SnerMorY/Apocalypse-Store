@@ -1,7 +1,7 @@
 {
 	"name": "Camera",
 	"plugin-id": "Sprite",
-	"sid": 386054448243589,
+	"sid": 879994285333749,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -9,12 +9,12 @@
 		{
 			"behaviorId": "scrollto",
 			"name": "СледитьЗа",
-			"sid": 233282175233043
+			"sid": 434775854558091
 		},
 		{
 			"behaviorId": "bound",
 			"name": "BoundTo",
-			"sid": 888048419080512
+			"sid": 575455384130581
 		}
 	],
 	"effectTypes": [],
@@ -31,13 +31,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5608164,
+						"imageSpriteId": 9065571,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 338706030609396,
+				"sid": 373177072278205,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

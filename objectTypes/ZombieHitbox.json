@@ -1,0 +1,119 @@
+{
+	"name": "ZombieHitbox",
+	"plugin-id": "Sprite",
+	"sid": 167795381121634,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "HP",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 866781618997538
+		},
+		{
+			"name": "State",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 713875207627864
+		},
+		{
+			"name": "CurrentNode",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 721721246188173
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Pathfinding",
+			"name": "ПоискПути",
+			"sid": 752657935605924
+		},
+		{
+			"behaviorId": "MoveTo",
+			"name": "ДвижениеК",
+			"sid": 577453844716678
+		},
+		{
+			"behaviorId": "LOS",
+			"name": "ПолеЗрения",
+			"sid": 686754035094051
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Таймер",
+			"sid": 656476132265697
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 50,
+						"height": 50,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 41561,
+						"collisionPoly": {
+							"points": [
+								0.37,
+								0.07,
+								0.55,
+								0.07,
+								0.59,
+								0.09,
+								0.63,
+								0.13,
+								0.75,
+								0.47,
+								0.75,
+								0.5299999999999998,
+								0.63,
+								0.87,
+								0.59,
+								0.91,
+								0.55,
+								0.93,
+								0.37,
+								0.93,
+								0.33,
+								0.91,
+								0.29,
+								0.87,
+								0.21,
+								0.59,
+								0.21,
+								0.43,
+								0.27,
+								0.19,
+								0.33,
+								0.09
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 886978784925223,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

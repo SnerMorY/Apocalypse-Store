@@ -1,7 +1,7 @@
 {
 	"name": "ZombieSpawner",
 	"plugin-id": "Sprite",
-	"sid": 371434781044415,
+	"sid": 353128376538948,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,13 +20,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3688818,
+						"imageSpriteId": 4187481,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 151430432001977,
+				"sid": 149041665628153,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
