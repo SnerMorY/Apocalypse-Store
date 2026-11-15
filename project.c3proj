@@ -100,14 +100,14 @@
 		{
 			"type": "behavior",
 			"id": "bound",
-			"name": "[Bound to]",
+			"name": "Ограничить сценой",
 			"author": "Scirra",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
 			"id": "destroy",
-			"name": "[Destroy outside]",
+			"name": "Уничтожение вне макета",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -173,11 +173,11 @@
 	},
 	"eventSheets": {
 		"items": [
-			"ES_SpawnUpgradeCards",
+			"ES_DraftCards",
 			"ES_Zombies",
 			"ES_Main",
 			"ES_Config",
-			"ES_WaveEvents"
+			"ES_Waves"
 		],
 		"subfolders": []
 	},
@@ -285,10 +285,6 @@
 		],
 		"subfolders": []
 	},
-	"models3d": {
-		"items": [],
-		"subfolders": []
-	},
 	"properties": {
 		"description": "",
 		"version": "1.0.0.0",
@@ -297,8 +293,8 @@
 		"authorEmail": "",
 		"authorWebsite": "",
 		"appId": "",
-		"saveLLMContextFile": true,
 		"pixelRounding": false,
+		"zAxisScale": "regular",
 		"fov": 0.7853981633974483,
 		"useLoaderLayout": false,
 		"fullscreenMode": "letterbox-scale",
@@ -328,7 +324,6 @@
 		"multitexturing": "auto",
 		"gpuPreference": "high-performance",
 		"framerateMode": "vsync",
-		"fixedFramerate": 30,
 		"sampling": "nearest",
 		"downscaling": "medium",
 		"renderingMode": "auto",
@@ -339,7 +334,6 @@
 		"loaderStyle": "splash",
 		"preloadSounds": true,
 		"uidAllocationMode": "increment",
-		"zAxisScale": "regular",
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",
 		"exportFileStructure": "folders",

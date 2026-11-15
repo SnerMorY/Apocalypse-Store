@@ -11,6 +11,20 @@
 			"desc": "",
 			"show": true,
 			"sid": 847285370694564
+		},
+		{
+			"name": "ZombiesToSpawn",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 338398355645423
+		},
+		{
+			"name": "ZombiesAlive",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 375077364266452
 		}
 	],
 	"behaviorTypes": [

@@ -1,0 +1,362 @@
+{
+	"name": "ES_DraftCards",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "1. Интерактив и выбор карточки",
+			"description": "Подсветка при наведении и применение бонуса при клике на карточку",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 961240234873406,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_DRAFT\""
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 654692023679165,
+							"parameters": {
+								"object": "UpgradeCard"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "UpgradeCard",
+							"sid": 556369963898207,
+							"parameters": {
+								"animation": "\"SizeUp\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 961240234873407
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 549168872329901
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "UpgradeCard",
+							"sid": 908991672103925,
+							"parameters": {
+								"animation": "\"SizeDown\"",
+								"from": "current-frame"
+							}
+						}
+					],
+					"sid": 933352293817602
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 159439118031960,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "UpgradeCard"
+							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 931203377966827,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_DRAFT\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "ApplyCardEffect",
+							"sid": 931203377966829,
+							"parameters": [
+								"UpgradeCard.EffectID"
+							]
+						},
+						{
+							"callFunction": "ClearDraftCards",
+							"sid": 931203377966830
+						},
+						{
+							"callFunction": "ChangeGameState",
+							"sid": 840465138209575,
+							"parameters": [
+								"\"WAVE_PREP\""
+							]
+						}
+					],
+					"sid": 931203377966828
+				}
+			],
+			"sid": 889900112233500
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "2. Методы Карточек (Functions)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "InitCardsDictionary",
+					"functionDescription": "Заполняет словарь описаний эффектов карточек",
+					"functionCategory": "UI_Draft",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "add-key",
+							"objectClass": "EffectNames",
+							"sid": 955057542143863,
+							"parameters": {
+								"key": "\"1\"",
+								"value": "\"+1 Firerate\""
+							}
+						},
+						{
+							"id": "add-key",
+							"objectClass": "EffectNames",
+							"sid": 264969404555763,
+							"parameters": {
+								"key": "\"2\"",
+								"value": "\"+1 HP\""
+							}
+						},
+						{
+							"id": "add-key",
+							"objectClass": "EffectNames",
+							"sid": 641193394686424,
+							"parameters": {
+								"key": "\"3\"",
+								"value": "\"+50 Movespeed\""
+							}
+						}
+					],
+					"sid": 674260624980690
+				},
+				{
+					"functionName": "SpawnDraftCards",
+					"functionDescription": "Включает слоу-мо (WAVE_DRAFT) и генерирует 3 уникальные карточки на слое UI",
+					"functionCategory": "UI_Draft",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"callFunction": "ChangeGameState",
+							"sid": 212856332715700,
+							"parameters": [
+								"\"WAVE_DRAFT\""
+							]
+						},
+						{
+							"id": "createPermutationTable",
+							"objectClass": "RandomCardEffect",
+							"sid": 556464943060178,
+							"parameters": {
+								"length": "3",
+								"offset": "1"
+							}
+						}
+					],
+					"sid": 889900112233444,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 889900112233445,
+									"parameters": {
+										"name": "\"i\"",
+										"start-index": "0",
+										"end-index": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 728143867700615,
+									"parameters": {
+										"object-to-create": "UpgradeCard",
+										"layer": "\"UI_Anchor\"",
+										"x": "ViewportMidX(\"UI_Anchor\") + (loopindex(\"i\") - 1) * 200",
+										"y": "ViewportMidY(\"UI_Anchor\")",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "UpgradeCard",
+									"sid": 515389333845264,
+									"parameters": {
+										"instance-variable": "EffectID",
+										"value": "RandomCardEffect.Permutation(loopindex(\"i\"))"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 827529361194109,
+									"parameters": {
+										"object-to-create": "CardText",
+										"layer": "\"UI_Anchor\"",
+										"x": "UpgradeCard.ImagePointX(1) - len(EffectNames.Get(str(UpgradeCard.EffectID))) * 3.5",
+										"y": "UpgradeCard.ImagePointY(1)",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "CardText",
+									"sid": 429638317766474,
+									"parameters": {
+										"text": "EffectNames.Get(str(UpgradeCard.EffectID))"
+									}
+								}
+							],
+							"sid": 889900112233447
+						}
+					]
+				},
+				{
+					"functionName": "ApplyCardEffect",
+					"functionDescription": "Применяет бонус выбранной карточки к характеристикам игрока",
+					"functionCategory": "UI_Draft",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "effectID",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 700100200300401
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "add-to-instvar",
+							"objectClass": "PlayerSprite",
+							"sid": 928818110855959,
+							"parameters": {
+								"instance-variable": "FireRate",
+								"value": "effectID = 1 ? 1 : 0"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "PlayerSprite",
+							"sid": 829505180676838,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "effectID = 2 ? 1 : 0"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "PlayerHitbox",
+							"sid": 889900112233449,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "effectID = 2 ? 1 : 0"
+							}
+						},
+						{
+							"id": "set-max-speed",
+							"objectClass": "PlayerHitbox",
+							"sid": 469412108425168,
+							"behaviorType": "8Направлений",
+							"parameters": {
+								"max-speed": "PlayerHitbox.8Направлений.MaxSpeed + (effectID = 3 ? 50 : 0)"
+							}
+						}
+					],
+					"sid": 700100200300400
+				},
+				{
+					"functionName": "ClearDraftCards",
+					"functionDescription": "Удаляет все карточки и тексты драфта с экрана",
+					"functionCategory": "UI_Draft",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 389512915511052,
+							"parameters": {
+								"object": "UpgradeCard"
+							}
+						},
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 676187056491461,
+							"parameters": {
+								"object": "CardText"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "UpgradeCard",
+							"sid": 538672707836206
+						},
+						{
+							"id": "destroy",
+							"objectClass": "CardText",
+							"sid": 507464180043441
+						}
+					],
+					"sid": 430295400159710
+				}
+			],
+			"sid": 889900112233400
+		}
+	],
+	"sid": 232610648651724
+}
