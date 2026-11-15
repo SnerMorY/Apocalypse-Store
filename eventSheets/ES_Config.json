@@ -75,7 +75,7 @@
 			"eventType": "variable",
 			"name": "CFG_DraftInterval",
 			"type": "number",
-			"initialValue": "5",
+			"initialValue": "7",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -90,6 +90,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 408542336371028
+		},
+		{
+			"eventType": "variable",
+			"name": "CFG_PrepTime",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 941333173353629
 		},
 		{
 			"eventType": "comment",

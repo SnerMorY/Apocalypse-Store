@@ -1,0 +1,10 @@
+{
+	"name": "WaveCountText",
+	"plugin-id": "Text",
+	"sid": 259364886828137,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}
