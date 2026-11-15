@@ -1,0 +1,254 @@
+{
+	"name": "ES_WaveEvents",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "0. Инициализация",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 622165030873441,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"INIT\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "WaveManager",
+							"sid": 212341063743456,
+							"parameters": {
+								"instance-variable": "WaveCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "WaveCountText",
+							"sid": 856438851306869,
+							"parameters": {
+								"text": "str(WaveManager.WaveCount)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 707457124574527,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "\"WAVE_COMBAT\""
+							}
+						}
+					],
+					"sid": 505415822535178
+				}
+			],
+			"sid": 414116452873012
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "1. Запуск и проверка таймера подготовки",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 486377038713549,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_PREP\""
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 412686991382241
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "WaveManager",
+							"sid": 914946961883440,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"duration": "CFG_PrepTime",
+								"type": "once",
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"sid": 303010504253172
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-timer-running",
+							"objectClass": "WaveManager",
+							"sid": 908904294890561,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 903338674385199,
+							"parameters": {
+								"text": "str(ceil( WaveManager.Таймер.Duration(\"WAVE_PREP_TIMER\") - WaveManager.Таймер.CurrentTime(\"WAVE_PREP_TIMER\")))"
+							}
+						}
+					],
+					"sid": 562068637257854
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "WaveManager",
+							"sid": 792247828190388,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "stop-timer",
+							"objectClass": "WaveManager",
+							"sid": 918668668653207,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 837080392348365,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "WaveManager",
+							"sid": 403658976810841,
+							"parameters": {
+								"instance-variable": "WaveCount",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "WaveCountText",
+							"sid": 562477822633085,
+							"parameters": {
+								"text": "str(WaveManager.WaveCount)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 966950361971565,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "\"WAVE_COMBAT\""
+							}
+						}
+					],
+					"sid": 375059248332586
+				}
+			],
+			"sid": 410462938262822
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "2. Конец игры",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "WaveManager",
+							"sid": 165513207526553,
+							"parameters": {
+								"instance-variable": "WaveCount",
+								"comparison": 0,
+								"value": "3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 291081657140509,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "\"VICTORY\""
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 772415413333971
+						}
+					],
+					"sid": 369302961615896
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 807887009929377,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"GAME_OVER\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 720665569776992
+						}
+					],
+					"sid": 796562368643390
+				}
+			],
+			"sid": 214902256819639
+		}
+	],
+	"sid": 202918990858376
+}

@@ -2,16 +2,6 @@
 	"name": "ES_SpawnUpgradeCards",
 	"events": [
 		{
-			"eventType": "variable",
-			"name": "IsDraftActive",
-			"type": "boolean",
-			"initialValue": "false",
-			"comment": "Флаг открытого окна выбора карточек",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 889900112233001
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "0. Инициализация словаря",
@@ -22,21 +12,17 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-start-of-layout",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 298657108100732
+							"sid": 967737946128765,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"INIT\""
+							}
 						}
 					],
 					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 154043857356745,
-							"parameters": {
-								"variable": "IsDraftActive",
-								"value": "false"
-							}
-						},
 						{
 							"id": "add-key",
 							"objectClass": "EffectNames",
@@ -83,21 +69,33 @@
 						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 311886132548354,
+							"sid": 969193347752185,
 							"parameters": {
 								"variable": "UpgradeTime",
 								"comparison": 5,
-								"value": "CFG_DraftInterval"
+								"value": "CFG_DraftInterval + CFG_PrepTime"
 							}
 						},
 						{
-							"id": "compare-boolean-eventvar",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 667005632463363,
+							"sid": 484819036377120,
 							"parameters": {
-								"variable": "IsDraftActive"
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_DRAFT\""
 							},
 							"isInverted": true
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 972401759693332,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 1,
+								"value": "\"VICTORY\""
+							}
 						}
 					],
 					"actions": [
@@ -119,15 +117,6 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 498039546219383,
-							"parameters": {
-								"variable": "IsDraftActive",
-								"value": "true"
-							}
-						},
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
@@ -152,6 +141,15 @@
 							"parameters": {
 								"length": "3",
 								"offset": "1"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 212856332715700,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "\"WAVE_DRAFT\""
 							}
 						}
 					],
@@ -337,12 +335,12 @@
 							}
 						},
 						{
-							"id": "set-boolean-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 475988449323994,
+							"sid": 840465138209575,
 							"parameters": {
-								"variable": "IsDraftActive",
-								"value": "false"
+								"variable": "GlobalState",
+								"value": "\"WAVE_PREP\""
 							}
 						}
 					],

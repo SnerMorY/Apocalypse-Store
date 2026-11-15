@@ -144,7 +144,10 @@
 			"BulletSprite",
 			"FloorTile",
 			"WallTile",
-			"ZombieSprite"
+			"ZombieSprite",
+			"WaveManager",
+			"WaveTimerText",
+			"WaveCountText"
 		],
 		"subfolders": []
 	},
@@ -173,7 +176,8 @@
 			"ES_SpawnUpgradeCards",
 			"ES_Zombies",
 			"ES_Main",
-			"ES_Config"
+			"ES_Config",
+			"ES_WaveEvents"
 		],
 		"subfolders": []
 	},

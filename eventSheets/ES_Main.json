@@ -14,6 +14,10 @@
 			"includeSheet": "ES_SpawnUpgradeCards"
 		},
 		{
+			"eventType": "include",
+			"includeSheet": "ES_WaveEvents"
+		},
+		{
 			"eventType": "variable",
 			"name": "CanShoot",
 			"type": "boolean",
@@ -22,6 +26,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 363910060659389
+		},
+		{
+			"eventType": "variable",
+			"name": "GlobalState",
+			"type": "string",
+			"initialValue": "\"NULL\"",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 124921347031793
 		},
 		{
 			"eventType": "group",
@@ -41,9 +55,36 @@
 					],
 					"actions": [
 						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 889656995018843,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "\"INIT\""
+							}
+						}
+					],
+					"sid": 800100200300404
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 201178104731896,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"INIT\""
+							}
+						}
+					],
+					"actions": [
+						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 800100200300402,
+							"sid": 745180651225710,
 							"parameters": {
 								"variable": "CanShoot",
 								"value": "true"
@@ -52,7 +93,7 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 450063332685699,
+							"sid": 703929844340286,
 							"parameters": {
 								"variable": "UpgradeTime",
 								"value": "0"
@@ -61,7 +102,7 @@
 						{
 							"id": "set-time-scale",
 							"objectClass": "System",
-							"sid": 953657434925793,
+							"sid": 310631321217735,
 							"parameters": {
 								"time-scale": "1.0"
 							}
@@ -69,7 +110,7 @@
 						{
 							"id": "set-max-speed",
 							"objectClass": "PlayerHitbox",
-							"sid": 555411121794779,
+							"sid": 969374503314237,
 							"behaviorType": "8Направлений",
 							"parameters": {
 								"max-speed": "CFG_PlayerSpeed"
@@ -78,14 +119,14 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "PlayerHitbox",
-							"sid": 707762129639589,
+							"sid": 961348980976722,
 							"parameters": {
 								"instance-variable": "HP",
 								"value": "CFG_PlayerMaxHP"
 							}
 						}
 					],
-					"sid": 800100200300404
+					"sid": 426792874787644
 				}
 			],
 			"sid": 800100200300400
@@ -259,6 +300,24 @@
 							"sid": 271793362350572,
 							"parameters": {
 								"angle": "PlayerSprite.Angle"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "WaveTimerText",
+							"sid": 462170103660141,
+							"parameters": {
+								"x": "Camera.X - 400",
+								"y": "Camera.Y - 230"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "WaveCountText",
+							"sid": 124934755132381,
+							"parameters": {
+								"x": "Camera.X - 400",
+								"y": "Camera.Y - 210"
 							}
 						}
 					],

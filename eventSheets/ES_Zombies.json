@@ -22,9 +22,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-start-of-layout",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 246099418217885
+							"sid": 375580700960007,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"INIT\""
+							}
 						}
 					],
 					"actions": [
@@ -314,6 +319,16 @@
 							"parameters": {
 								"object": "ZombieSpawner"
 							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 383833101391784,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_COMBAT\""
+							}
 						}
 					],
 					"actions": [
@@ -408,9 +423,13 @@
 							],
 							"actions": [
 								{
-									"id": "restart-layout",
+									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 876599284028839
+									"sid": 375786157430416,
+									"parameters": {
+										"variable": "GlobalState",
+										"value": "\"GAME_OVER\""
+									}
 								}
 							],
 							"sid": 246179143463600
