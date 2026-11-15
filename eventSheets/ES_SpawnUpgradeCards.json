@@ -175,12 +175,12 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 462908315336366,
+									"sid": 554375609510448,
 									"parameters": {
 										"object-to-create": "UpgradeCard",
 										"layer": "1",
-										"x": "Camera.X + (loopindex(\"i\") - 1) * 200",
-										"y": "Camera.Y",
+										"x": "ViewportMidX(\"UI\") + (loopindex(\"i\") - 1) * 200",
+										"y": "ViewportMidY(\"UI\")",
 										"create-hierarchy": false,
 										"template-name": "\"\""
 									}
