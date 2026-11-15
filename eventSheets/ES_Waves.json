@@ -1,0 +1,473 @@
+{
+	"name": "ES_Waves",
+	"events": [
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "1. Боевая фаза волны (WAVE_COMBAT)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 601100200300401,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_COMBAT\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "WaveManager",
+							"sid": 601100200300402,
+							"parameters": {
+								"instance-variable": "ZombiesToSpawn",
+								"comparison": 4,
+								"value": "0"
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 601100200300403,
+							"parameters": {
+								"interval-seconds": "CFG_SpawnInterval"
+							}
+						},
+						{
+							"id": "pick-random-instance",
+							"objectClass": "System",
+							"sid": 601100200300404,
+							"parameters": {
+								"object": "ZombieSpawner"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "SpawnZombie",
+							"sid": 601100200300405,
+							"parameters": [
+								"ZombieSpawner.X",
+								"ZombieSpawner.Y"
+							]
+						},
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "WaveManager",
+							"sid": 601100200300406,
+							"parameters": {
+								"instance-variable": "ZombiesToSpawn",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 601100200300400
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 602100200300401,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_COMBAT\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 602100200300402,
+							"parameters": {
+								"text": "\"Зомби осталось: \" & str(WaveManager.ZombiesAlive + WaveManager.ZombiesToSpawn)"
+							}
+						}
+					],
+					"sid": 602100200300400
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 603100200300401,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_COMBAT\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "WaveManager",
+							"sid": 603100200300402,
+							"parameters": {
+								"instance-variable": "ZombiesToSpawn",
+								"comparison": 3,
+								"value": "0"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "WaveManager",
+							"sid": 603100200300403,
+							"parameters": {
+								"instance-variable": "ZombiesAlive",
+								"comparison": 3,
+								"value": "0"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 603100200300404
+						}
+					],
+					"actions": [],
+					"sid": 603100200300400,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "WaveManager",
+									"sid": 603100200300405,
+									"parameters": {
+										"instance-variable": "WaveCount",
+										"comparison": 5,
+										"value": "CFG_MaxWaves"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "ChangeGameState",
+									"sid": 603100200300406,
+									"parameters": [
+										"\"VICTORY\""
+									]
+								}
+							],
+							"sid": 603100200300407
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 603100200300408
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "WaveTimerText",
+									"sid": 603100200300409,
+									"parameters": {
+										"text": "\"Выберите улучшение!\""
+									}
+								},
+								{
+									"callFunction": "SpawnDraftCards",
+									"sid": 603100200300410
+								}
+							],
+							"sid": 603100200300411
+						}
+					]
+				}
+			],
+			"sid": 414116452873012
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "2. Передышка после драфта (WAVE_PREP)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 486377038713549,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"WAVE_PREP\""
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 412686991382241
+						}
+					],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "WaveManager",
+							"sid": 914946961883440,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"duration": "CFG_PrepTime",
+								"type": "once",
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"sid": 303010504253172
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-timer-running",
+							"objectClass": "WaveManager",
+							"sid": 908904294890561,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 903338674385199,
+							"parameters": {
+								"text": "\"Передышка: \" & str(ceil(WaveManager.Таймер.Duration(\"WAVE_PREP_TIMER\") - WaveManager.Таймер.CurrentTime(\"WAVE_PREP_TIMER\"))) & \" с\""
+							}
+						}
+					],
+					"sid": 562068637257854
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "WaveManager",
+							"sid": 792247828190388,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "stop-timer",
+							"objectClass": "WaveManager",
+							"sid": 918668668653207,
+							"behaviorType": "Таймер",
+							"parameters": {
+								"tag": "\"WAVE_PREP_TIMER\""
+							}
+						},
+						{
+							"callFunction": "StartWave",
+							"sid": 966950361971565,
+							"parameters": [
+								"WaveManager.WaveCount + 1"
+							]
+						}
+					],
+					"sid": 375059248332586
+				}
+			],
+			"sid": 410462938262822
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "3. Завершение игры (VICTORY / GAME_OVER)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 369302961615891,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"VICTORY\""
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 369302961615892
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 369302961615893,
+							"parameters": {
+								"text": "\"ПОБЕДА! Все волны отражены\""
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 369302961615894,
+							"parameters": {
+								"seconds": "2",
+								"use-timescale": false
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 772415413333971
+						}
+					],
+					"sid": 369302961615896
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 807887009929377,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 0,
+								"value": "\"GAME_OVER\""
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 807887009929378
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "WaveTimerText",
+							"sid": 807887009929379,
+							"parameters": {
+								"text": "\"ПОРАЖЕНИЕ!\""
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 807887009929380,
+							"parameters": {
+								"seconds": "1.5",
+								"use-timescale": false
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 720665569776992
+						}
+					],
+					"sid": 796562368643390
+				}
+			],
+			"sid": 214902256819639
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "4. Методы Волн (Functions)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "StartWave",
+					"functionDescription": "Инициализирует новую волну, сбрасывает счётчики зомби и переводит FSM в WAVE_COMBAT",
+					"functionCategory": "Waves",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "waveNumber",
+							"type": "number",
+							"initialValue": "1",
+							"comment": "",
+							"sid": 604100200300401
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "WaveManager",
+							"sid": 604100200300402,
+							"parameters": {
+								"instance-variable": "WaveCount",
+								"value": "waveNumber"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "WaveManager",
+							"sid": 604100200300403,
+							"parameters": {
+								"instance-variable": "ZombiesToSpawn",
+								"value": "CFG_ZombiesPerWave"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "WaveManager",
+							"sid": 604100200300404,
+							"parameters": {
+								"instance-variable": "ZombiesAlive",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "WaveCountText",
+							"sid": 604100200300405,
+							"parameters": {
+								"text": "\"Волна: \" & str(WaveManager.WaveCount) & \" / \" & str(CFG_MaxWaves)"
+							}
+						},
+						{
+							"callFunction": "ChangeGameState",
+							"sid": 604100200300406,
+							"parameters": [
+								"\"WAVE_COMBAT\""
+							]
+						}
+					],
+					"sid": 604100200300400
+				}
+			],
+			"sid": 604100200300399
+		}
+	],
+	"sid": 202918990858376
+}

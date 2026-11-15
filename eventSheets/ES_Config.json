@@ -2,11 +2,15 @@
 	"name": "ES_Config",
 	"events": [
 		{
+			"eventType": "comment",
+			"text": "Настройки игрока и оружия"
+		},
+		{
 			"eventType": "variable",
 			"name": "CFG_PlayerSpeed",
 			"type": "number",
 			"initialValue": "350",
-			"comment": "",
+			"comment": "Базовая скорость передвижения игрока",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 486582388724389
@@ -16,7 +20,7 @@
 			"name": "CFG_PlayerMaxHP",
 			"type": "number",
 			"initialValue": "5",
-			"comment": "",
+			"comment": "Стартовое здоровье игрока",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 511362613532935
@@ -26,17 +30,21 @@
 			"name": "CFG_BulletDamage",
 			"type": "number",
 			"initialValue": "1",
-			"comment": "",
+			"comment": "Урон от одной пули",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 729088952400295
+		},
+		{
+			"eventType": "comment",
+			"text": "Настройки зомби"
 		},
 		{
 			"eventType": "variable",
 			"name": "CFG_ZombieSpeed",
 			"type": "number",
 			"initialValue": "220",
-			"comment": "",
+			"comment": "Скорость преследования зомби",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 529181959086056
@@ -46,7 +54,7 @@
 			"name": "CFG_ZombieMaxHP",
 			"type": "number",
 			"initialValue": "3",
-			"comment": "",
+			"comment": "Здоровье обычного зомби",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 354269254076594
@@ -56,37 +64,51 @@
 			"name": "CFG_ZombieKnockback",
 			"type": "number",
 			"initialValue": "25",
-			"comment": "",
+			"comment": "Сила отбрасывания зомби при попадании",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 385055071043862
 		},
 		{
+			"eventType": "comment",
+			"text": "Настройки волн и драфта"
+		},
+		{
+			"eventType": "variable",
+			"name": "CFG_ZombiesPerWave",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "Количество зомби в одной волне",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 711310438005739
+		},
+		{
+			"eventType": "variable",
+			"name": "CFG_MaxWaves",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "Количество волн до победы",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 711310438005740
+		},
+		{
 			"eventType": "variable",
 			"name": "CFG_SpawnInterval",
 			"type": "number",
-			"initialValue": "2",
-			"comment": "",
+			"initialValue": "1.5",
+			"comment": "Задержка между появлением зомби в волне (сек)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 711310438005738
 		},
 		{
 			"eventType": "variable",
-			"name": "CFG_DraftInterval",
-			"type": "number",
-			"initialValue": "7",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 507787393682723
-		},
-		{
-			"eventType": "variable",
 			"name": "CFG_DraftTimeScale",
 			"type": "number",
 			"initialValue": "0.25",
-			"comment": "",
+			"comment": "Замедление времени во время выбора карточек",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 408542336371028
@@ -96,14 +118,10 @@
 			"name": "CFG_PrepTime",
 			"type": "number",
 			"initialValue": "5",
-			"comment": "",
+			"comment": "Длительность передышки перед следующей волной (сек)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 941333173353629
-		},
-		{
-			"eventType": "comment",
-			"text": "EventSheet для настройка конфигурации игры и стартовых параметров"
 		}
 	],
 	"sid": 189256022237860

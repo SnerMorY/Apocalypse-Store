@@ -7,15 +7,15 @@
 		},
 		{
 			"eventType": "include",
+			"includeSheet": "ES_Waves"
+		},
+		{
+			"eventType": "include",
 			"includeSheet": "ES_Zombies"
 		},
 		{
 			"eventType": "include",
-			"includeSheet": "ES_SpawnUpgradeCards"
-		},
-		{
-			"eventType": "include",
-			"includeSheet": "ES_WaveEvents"
+			"includeSheet": "ES_DraftCards"
 		},
 		{
 			"eventType": "variable",
@@ -31,8 +31,8 @@
 			"eventType": "variable",
 			"name": "GlobalState",
 			"type": "string",
-			"initialValue": "\"NULL\"",
-			"comment": "",
+			"initialValue": "\"MENU\"",
+			"comment": "Текущее состояние FSM игры: INIT, WAVE_COMBAT, WAVE_DRAFT, WAVE_PREP, GAME_OVER, VICTORY",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 124921347031793
@@ -40,8 +40,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "0. Сброс состояния при рестарте",
-			"description": "",
+			"title": "0. Инициализация сессии (INIT)",
+			"description": "Сброс параметров игрока и запуск первой волны",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -55,13 +55,11 @@
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
+							"callFunction": "ChangeGameState",
 							"sid": 889656995018843,
-							"parameters": {
-								"variable": "GlobalState",
-								"value": "\"INIT\""
-							}
+							"parameters": [
+								"\"INIT\""
+							]
 						}
 					],
 					"sid": 800100200300404
@@ -78,6 +76,11 @@
 								"comparison": 0,
 								"value": "\"INIT\""
 							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 201178104731897
 						}
 					],
 					"actions": [
@@ -88,15 +91,6 @@
 							"parameters": {
 								"variable": "CanShoot",
 								"value": "true"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 703929844340286,
-							"parameters": {
-								"variable": "UpgradeTime",
-								"value": "0"
 							}
 						},
 						{
@@ -124,6 +118,30 @@
 								"instance-variable": "HP",
 								"value": "CFG_PlayerMaxHP"
 							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "PlayerSprite",
+							"sid": 961348980976723,
+							"parameters": {
+								"instance-variable": "HP",
+								"value": "CFG_PlayerMaxHP"
+							}
+						},
+						{
+							"callFunction": "InitCardsDictionary",
+							"sid": 961348980976724
+						},
+						{
+							"callFunction": "RegenerateZombieMap",
+							"sid": 961348980976725
+						},
+						{
+							"callFunction": "StartWave",
+							"sid": 961348980976726,
+							"parameters": [
+								"1"
+							]
 						}
 					],
 					"sid": 426792874787644
@@ -244,7 +262,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "2. Камера и привязка спрайтов игрока",
+			"title": "2. Камера и визуал игрока",
 			"description": "Плавное следование камеры и поворот оружия к мыши",
 			"isActiveOnStart": true,
 			"children": [
@@ -301,24 +319,6 @@
 							"parameters": {
 								"angle": "PlayerSprite.Angle"
 							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "WaveTimerText",
-							"sid": 462170103660141,
-							"parameters": {
-								"x": "Camera.X - 400",
-								"y": "Camera.Y - 230"
-							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "WaveCountText",
-							"sid": 124934755132381,
-							"parameters": {
-								"x": "Camera.X - 400",
-								"y": "Camera.Y - 210"
-							}
 						}
 					],
 					"sid": 637110497647302
@@ -329,8 +329,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "3. Стрельба и Попадания",
-			"description": "Логика оружия",
+			"title": "3. Стрельба и попадания",
+			"description": "Логика выстрелов и столкновений пуль",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -350,6 +350,16 @@
 							"sid": 845470045883461,
 							"parameters": {
 								"variable": "CanShoot"
+							}
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 845470045883462,
+							"parameters": {
+								"variable": "GlobalState",
+								"comparison": 1,
+								"value": "\"WAVE_DRAFT\""
 							}
 						}
 					],
@@ -371,7 +381,7 @@
 							"sid": 633952571830201,
 							"parameters": {
 								"object-to-create": "BulletSprite",
-								"layer": "0",
+								"layer": "\"Main\"",
 								"x": "WeaponGun.ImagePointX(1)",
 								"y": "WeaponGun.ImagePointY(1)",
 								"create-hierarchy": true,
@@ -469,6 +479,55 @@
 				}
 			],
 			"sid": 773467828207027
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "4. Управление FSM (Functions)",
+			"description": "Единая точка переключения глобальных состояний игры",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "ChangeGameState",
+					"functionDescription": "Переключает GlobalState и настраивает скорость времени",
+					"functionCategory": "FSM",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "newState",
+							"type": "string",
+							"initialValue": "\"\"",
+							"comment": "",
+							"sid": 500100200300401
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 500100200300402,
+							"parameters": {
+								"variable": "GlobalState",
+								"value": "newState"
+							}
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 500100200300403,
+							"parameters": {
+								"time-scale": "newState = \"WAVE_DRAFT\" ? CFG_DraftTimeScale : 1.0"
+							}
+						}
+					],
+					"sid": 500100200300400
+				}
+			],
+			"sid": 500100200300399
 		}
 	],
 	"sid": 936407334086993

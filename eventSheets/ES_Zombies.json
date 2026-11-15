@@ -2,95 +2,10 @@
 	"name": "ES_Zombies",
 	"events": [
 		{
-			"eventType": "variable",
-			"name": "UpgradeTime",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "Таймер до появления карточек апгрейда",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 329443326771055
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "0. Инициализация карты препятствий",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 375580700960007,
-							"parameters": {
-								"variable": "GlobalState",
-								"comparison": 0,
-								"value": "\"INIT\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "regenerate-obstacle-map",
-							"objectClass": "ZombieHitbox",
-							"sid": 950985572939710,
-							"behaviorType": "ПоискПути"
-						},
-						{
-							"id": "add-obstacle",
-							"objectClass": "ZombieHitbox",
-							"sid": 168608628418760,
-							"behaviorType": "ПоискПути",
-							"parameters": {
-								"obstacle": "WallTile"
-							}
-						}
-					],
-					"sid": 869992247781554
-				}
-			],
-			"sid": 272385232421875
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "1. Волна",
-			"description": "Считает время до карточек",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-tick",
-							"objectClass": "System",
-							"sid": 977234821667028
-						}
-					],
-					"actions": [
-						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 227031654909316,
-							"parameters": {
-								"variable": "UpgradeTime",
-								"value": "dt"
-							}
-						}
-					],
-					"sid": 524327370435280
-				}
-			],
-			"sid": 112233445566700
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "2. Машина состояний Зомби",
-			"description": "Индивидуальная логика для каждого экземпляра зомби",
+			"title": "1. Машина состояний Зомби",
+			"description": "Индивидуальная логика поиска пути и преследования для каждого экземпляра зомби",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -297,60 +212,8 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "3. Создание Зомби",
-			"description": "Вызов спавна",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 168077867879187,
-							"parameters": {
-								"interval-seconds": "CFG_SpawnInterval"
-							}
-						},
-						{
-							"id": "pick-random-instance",
-							"objectClass": "System",
-							"sid": 556677889900112,
-							"parameters": {
-								"object": "ZombieSpawner"
-							}
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 383833101391784,
-							"parameters": {
-								"variable": "GlobalState",
-								"comparison": 0,
-								"value": "\"WAVE_COMBAT\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "SpawnZombie",
-							"sid": 556677889900199,
-							"parameters": [
-								"ZombieSpawner.X",
-								"ZombieSpawner.Y"
-							]
-						}
-					],
-					"sid": 225823730005926
-				}
-			],
-			"sid": 556677889900100
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "4. Контактный урон",
-			"description": "",
+			"title": "2. Контактный урон игроку",
+			"description": "Нанесение урона при столкновении зомби с игроком",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -423,13 +286,11 @@
 							],
 							"actions": [
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
+									"callFunction": "ChangeGameState",
 									"sid": 375786157430416,
-									"parameters": {
-										"variable": "GlobalState",
-										"value": "\"GAME_OVER\""
-									}
+									"parameters": [
+										"\"GAME_OVER\""
+									]
 								}
 							],
 							"sid": 246179143463600
@@ -442,13 +303,42 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "5. Методы Зомби (Functions)",
-			"description": "Модульные функции для Зомби",
+			"title": "3. Методы Зомби (Functions)",
+			"description": "Модульные функции для спавна, урона и навигации зомби",
 			"isActiveOnStart": true,
 			"children": [
 				{
+					"functionName": "RegenerateZombieMap",
+					"functionDescription": "Обновляет сетку препятствий для поиска пути зомби",
+					"functionCategory": "Zombies",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "regenerate-obstacle-map",
+							"objectClass": "ZombieHitbox",
+							"sid": 950985572939710,
+							"behaviorType": "ПоискПути"
+						},
+						{
+							"id": "add-obstacle",
+							"objectClass": "ZombieHitbox",
+							"sid": 168608628418760,
+							"behaviorType": "ПоискПути",
+							"parameters": {
+								"obstacle": "WallTile"
+							}
+						}
+					],
+					"sid": 869992247781554
+				},
+				{
 					"functionName": "SpawnZombie",
-					"functionDescription": "Создает хитбокс зомби и задает статы из ES_Config",
+					"functionDescription": "Создает хитбокс и спрайт зомби, задает статы из ES_Config и увеличивает ZombiesAlive",
 					"functionCategory": "Zombies",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
@@ -478,7 +368,7 @@
 							"sid": 581782231637000,
 							"parameters": {
 								"object-to-create": "ZombieHitbox",
-								"layer": "0",
+								"layer": "\"Main\"",
 								"x": "spawnX",
 								"y": "spawnY",
 								"create-hierarchy": false,
@@ -513,6 +403,15 @@
 							}
 						},
 						{
+							"id": "add-to-instvar",
+							"objectClass": "WaveManager",
+							"sid": 775153144050002,
+							"parameters": {
+								"instance-variable": "ZombiesAlive",
+								"value": "1"
+							}
+						},
+						{
 							"id": "wait",
 							"objectClass": "System",
 							"sid": 698531948996621,
@@ -536,7 +435,7 @@
 				},
 				{
 					"functionName": "DamageZombie",
-					"functionDescription": "Наносит урон зомби, применяет Knockback из конфига и проверяет смерть",
+					"functionDescription": "Наносит урон зомби, применяет Knockback и уменьшает ZombiesAlive при смерти",
 					"functionCategory": "Zombies",
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
@@ -627,6 +526,15 @@
 									"id": "destroy",
 									"objectClass": "ZombieHitbox",
 									"sid": 778899001122341
+								},
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "WaveManager",
+									"sid": 778899001122343,
+									"parameters": {
+										"instance-variable": "ZombiesAlive",
+										"value": "1"
+									}
 								}
 							],
 							"sid": 778899001122342
